@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>關係失去整理所 🩹｜明愛心營站─ 關係傷痛支援計劃</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Noto+Sans+HK:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background-color: #f4fafe;
+            background-image: 
+                linear-gradient(rgba(154, 213, 248, 0.3) 1.5px, transparent 1.5px),
+                linear-gradient(90deg, rgba(154, 213, 248, 0.3) 1.5px, transparent 1.5px);
+            background-size: 22px 22px;
+            font-family: 'Noto Sans HK', sans-serif;
+            color: #111;
+            margin: 0;
+            padding: 20px 15px 80px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container { max-width: 520px; width: 100%; }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 20px; }
+        .header .org-badge {
+            display: inline-block; background: #9ad5f8; color: #111; font-size: 10px; font-weight: 700;
+            padding: 3px 12px; border-radius: 12px; letter-spacing: 1px; margin-bottom: 8px;
+            border: 2px solid #111; box-shadow: 2px 2px 0px #111;
+        }
+        .header h1 { font-family: 'Caveat', 'Noto Sans HK', cursive; font-size: 34px; margin: 0; line-height: 1.2; }
+        
+        /* Navigation (Pages) */
+        .nav-bar {
+            position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%);
+            background: #fff; border: 3px solid #111; border-radius: 30px;
+            display: flex; padding: 5px; box-shadow: 4px 4px 0px #111; z-index: 100;
+            width: 90%; max-width: 400px; justify-content: space-between;
+        }
+        .nav-btn {
+            flex: 1; background: transparent; border: none; font-size: 14px; font-weight: 700;
+            padding: 10px 0; border-radius: 20px; cursor: pointer; transition: 0.2s;
+            font-family: inherit; color: #555;
+        }
+        .nav-btn.active { background: #111; color: #fff; }
+
+        /* Pages */
+        .page { display: none; animation: fadeIn 0.4s ease forwards; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Card Styles */
+        .doodle-card {
+            background: #ffffff; border: 3.5px solid #111; border-radius: 18px;
+            box-shadow: 6px 6px 0px #111; padding: 22px; margin-bottom: 24px; position: relative;
+        }
+        .zone-tag {
+            font-size: 13px; background: #fffbe6; border: 2px solid #111; display: inline-block;
+            padding: 3px 12px; border-radius: 12px; margin-bottom: 12px; font-weight: bold; box-shadow: 2px 2px 0px #111;
+        }
+        .doodle-card h2 { font-size: 22px; margin-top: 0; margin-bottom: 12px; }
+        
+        .quote-box {
+            background: #fdfbf7; border-left: 4.5px solid #9ad5f8; padding: 12px 15px;
+            margin-bottom: 15px; border-radius: 0 8px 8px 0; font-size: 14px; font-weight: 700; line-height: 1.5;
+        }
+        
+        .text-content { font-size: 13.5px; line-height: 1.65; color: #444; margin-bottom: 16px; }
+        
+        /* Academic Source Corner */
+        .source-cite {
+            text-align: right; font-size: 10.5px; color: #999; margin-top: -10px; margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        /* Tags & Buttons */
+        .tag-category { font-weight: 700; font-size: 13px; margin-bottom: 8px; color: #333; }
+        .tags-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+        .tag-btn {
+            background: #fff; border: 2px solid #ccc; border-radius: 20px; padding: 7px 14px;
+            font-size: 13px; font-weight: 700; cursor: pointer; color: #666; transition: all 0.2s;
+            font-family: inherit;
+        }
+        .tag-btn.active, .tag-btn:active {
+            background: #9ad5f8; border-color: #111; color: #111; box-shadow: 3px 3px 0px #111; transform: translateY(-2px);
+        }
+        .action-btn {
+            background: #9ad5f8; border: 2.5px solid #111; border-radius: 10px; padding: 10px 20px;
+            font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 3px 3px 0px #111; transition: 0.1s;
+            font-family: inherit;
+        }
+        .action-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #111; }
+        .action-btn:disabled { background: #ddd; color: #999; box-shadow: 3px 3px 0px #999; cursor: not-allowed; }
+
+        /* Status & Feedback Boxes */
+        .feedback-box {
+            background: #fdfbf7; border: 2px dashed #111; border-radius: 10px; padding: 12px 15px;
+            font-size: 13px; line-height: 1.6; min-height: 60px; display: flex; align-items: center;
+            justify-content: center; text-align: center; margin-top: 15px; font-weight: 500; transition: 0.3s;
+        }
+
+        /* SVG Stage */
+        .svg-stage {
+            width: 100%; height: 210px; position: relative; margin: 10px 0;
+            background: #fafafa; border: 2px dashed #ccc; border-radius: 12px;
+            touch-action: pan-y; overflow: hidden;
+        }
+        svg.stage-svg { width: 100%; height: 100%; overflow: visible; }
+
+        /* ★ 圖例 (Legend) */
+        .path-legend {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+            font-size: 11px; font-weight: 700; color: #555; margin: 6px 0 12px 0;
+        }
+        .path-legend span { display: inline-flex; align-items: center; gap: 4px; }
+        .legend-swatch { display: inline-block; width: 22px; height: 0; border-radius: 3px; }
+        .swatch-blue   { border-top: 3px solid #457b9d; }
+        .swatch-orange { border-top: 4px solid #f4a261; }
+        .legend-question {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 20px; height: 20px; border: 2px dashed #999; border-radius: 50%;
+            color: #999; font-size: 12px; font-weight: 900;
+        }
+
+        /* ★ 觸發物情緒氣泡（放在版面下方，易於閱讀） */
+        .trigger-bubble {
+            display: none; margin-top: 12px; padding: 12px 15px;
+            background: #fff3e6; border: 2.5px solid #f4a261; border-radius: 14px;
+            font-size: 13px; line-height: 1.6; font-weight: 700; text-align: center;
+            box-shadow: 3px 3px 0px rgba(244,162,97,0.5);
+            animation: bubblePop 0.3s ease;
+        }
+        @keyframes bubblePop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        
+        /* Custom Slider */
+        .custom-slider {
+            -webkit-appearance: none; width: 100%; height: 12px; background: #ddd;
+            border-radius: 10px; border: 2px solid #111; outline: none; margin: 15px 0;
+        }
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 24px; height: 24px;
+            border-radius: 50%; background: #9ad5f8; border: 3px solid #111; cursor: pointer; box-shadow: 2px 2px 0px #111;
+        }
+
+        .doodle-textarea {
+            width: 100%; height: 100px; border: 2.5px solid #111; border-radius: 10px; padding: 12px;
+            font-size: 14px; resize: none; margin-bottom: 12px; font-family: inherit;
+        }
+
+        /* ================================================= */
+        /* ★★★ Step 1：同一片天空（整合版・doodle 風格） ★★★ */
+        /* ================================================= */
+        .cloud-stage { display: flex; justify-content: center; margin: 2px 0; }
+        .cloud-stage svg { width: 96%; max-width: 400px; height: auto; }
+
+        /* ★★★ 黏貼置頂雲朵：捲動時自動縮小 ★★★ */
+        #skyPick .cloud-stage {
+            position: sticky; top: 8px; z-index: 60;
+            background: rgba(255, 255, 255, 0.94);
+            border: 2px dashed #9ad5f8; border-radius: 14px;
+            padding: 2px 0 4px 0; margin-bottom: 12px;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 3px 10px rgba(58, 90, 120, 0.12);
+            transition: padding 0.35s ease;
+        }
+        #skyPick .cloud-stage svg {
+            max-width: 250px;
+            transition: max-width 0.35s ease;
+        }
+        #skyPick .cloud-stage .sticky-hint {
+            position: absolute; bottom: 4px; right: 10px;
+            font-size: 9.5px; color: #9ad5f8; font-weight: 700; letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+        }
+        /* ★ 貼頂（捲動中）狀態：雲朵縮細、收窄內距、隱藏提示字 */
+        #skyPick .cloud-stage.stuck { padding: 0; }
+        #skyPick .cloud-stage.stuck svg { max-width: 120px; }
+        #skyPick .cloud-stage.stuck .sticky-hint { opacity: 0; }
+
+        #skyResult { display: none; }
+        .sky {
+            position: relative; height: 110px; overflow: hidden; margin: 4px 0;
+            background: #eaf6ff; border: 2px dashed #9ad5f8; border-radius: 12px;
+        }
+        .sky .mini-cloud { position: absolute; opacity: 0; animation: floatIn 1.4s ease forwards; }
+        @keyframes floatIn { from { opacity: 0; transform: translateY(14px); } to { opacity: .9; transform: translateY(0); } }
+        .sky-count { text-align: center; font-size: 14px; font-weight: 700; color: #333; margin-top: 10px; }
+        .sky-count b { color: #e63946; font-size: 17px; }
+        .sky-sub { text-align: center; font-size: 11.5px; color: #999; margin: 4px 0 10px; letter-spacing: 2px; }
+
+        /* ★ 精簡版他人回應：一行總數＋小型標籤 */
+        .others-mini {
+            background: #fdfbf7; border: 2px dashed #111; border-radius: 10px;
+            padding: 10px 12px; margin-top: 10px;
+        }
+        .others-mini .line { font-size: 12.5px; font-weight: 700; color: #444; margin-bottom: 7px; }
+        .others-mini .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .others-mini .tags span {
+            font-size: 11px; font-weight: 700; background: #fff; border: 2px solid #ccc;
+            color: #555; border-radius: 20px; padding: 2px 9px;
+        }
+        .others-mini .tags span b { color: #e63946; }
+
+        /* ================================================= */
+        /* ★★★ 安放區新增樣式（沿用 doodle 風格） ★★★ */
+        /* ================================================= */
+
+        /* --- 拆箱（模擬開箱效果，非翻板・可重複開合） --- */
+        .unbox-grid { display: flex; flex-direction: column; gap: 16px; margin: 15px 0; }
+        .unbox {
+            position: relative; border: 3px solid #111; border-radius: 14px;
+            background: #e8cda6; box-shadow: 4px 4px 0px #111; cursor: pointer;
+            padding: 52px 16px 16px 16px; overflow: hidden;
+            transition: background 0.6s ease;
+        }
+        /* 箱蓋兩片 */
+        .unbox .flap {
+            position: absolute; top: 0; height: 38px; width: 50.5%;
+            background: #dbb888; border-bottom: 2.5px solid #111; z-index: 3;
+            transition: transform 0.55s ease, opacity 0.45s ease;
+        }
+        .unbox .flap-l { left: 0; transform-origin: top left; border-right: 1.5px dashed #b08d5e; }
+        .unbox .flap-r { right: 0; transform-origin: top right; }
+        .unbox.opened .flap-l { transform: translateY(-6px) rotate(-80deg); opacity: 0; }
+        .unbox.opened .flap-r { transform: translateY(-6px) rotate(80deg); opacity: 0; }
+        /* 膠紙 */
+        .unbox .tape {
+            position: absolute; top: 8px; left: 50%; transform: translateX(-50%) rotate(-2deg);
+            background: #fffbe6; border: 2px solid #111; border-radius: 6px; padding: 2px 10px;
+            font-size: 11px; font-weight: 700; z-index: 4; white-space: nowrap;
+            transition: 0.5s ease;
+        }
+        .unbox.opened .tape { opacity: 0; transform: translateX(-50%) translateY(-32px) rotate(14deg); }
+        /* 批判語句 */
+        .unbox .crit {
+            display: block; text-align: center; background: #fff; border: 2.5px solid #111;
+            border-radius: 10px; padding: 12px 10px; font-weight: 900; font-size: 16px;
+            box-shadow: 2px 2px 0px #111; transition: 0.5s ease;
+        }
+        .unbox.opened .crit {
+            text-decoration: line-through; color: #999; font-size: 12px; font-weight: 700;
+            padding: 4px 8px; box-shadow: none; background: #f3f3f3; border-color: #ccc;
+        }
+        .unbox .tap-hint { text-align: center; font-size: 11px; font-weight: 700; color: #8a6d47; margin-top: 8px; transition: 0.3s; }
+        .unbox.opened .tap-hint { display: none; }
+        /* 箱內內容（由箱中升起） */
+        .unbox .inside {
+            max-height: 0; opacity: 0; transform: translateY(18px);
+            transition: max-height 0.6s ease 0.25s, opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+            overflow: hidden; text-align: center;
+        }
+        .unbox.opened .inside { max-height: 320px; opacity: 1; transform: translateY(0); margin-top: 10px; }
+        .unbox .element-badge {
+            display: inline-block; background: #fff; border: 2.5px solid #111; border-radius: 20px;
+            padding: 4px 14px; font-size: 14px; font-weight: 900; box-shadow: 2px 2px 0px #111; margin-bottom: 8px;
+        }
+        .unbox .kind-line { font-size: 14px; font-weight: 700; margin-bottom: 6px; line-height: 1.5; }
+        .unbox .detail { font-size: 12px; color: #555; line-height: 1.6; }
+        .unbox .sorted-tag {
+            display: inline-block; background: #f0f9f4; border: 2px solid #2a9d8f; color: #2a9d8f;
+            border-radius: 12px; padding: 1px 10px; font-size: 10.5px; font-weight: 700; margin-top: 8px;
+        }
+        /* ★ 重新封箱提示 */
+        .unbox .close-hint {
+            font-size: 10.5px; color: #999; font-weight: 700; margin-top: 8px;
+        }
+        /* 開箱後底色（對應三元素） */
+        .unbox.opened[data-color="blue"]   { background: #eaf6ff; }
+        .unbox.opened[data-color="orange"] { background: #fff3e6; }
+        .unbox.opened[data-color="green"]  { background: #f0f9f4; }
+
+        /* --- 對照帶 --- */
+        .vs-strip { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+        .vs-item {
+            flex: 1 1 30%; min-width: 130px; text-align: center; border: 2px solid #111;
+            border-radius: 10px; padding: 8px 6px; font-size: 12px; background: #fdfbf7;
+            box-shadow: 2px 2px 0px #111; color: #666;
+        }
+        .vs-item b { display: block; font-size: 14px; color: #111; }
+        .vs-item s { color: #aaa; }
+
+        /* --- 猜一猜揭示卡 --- */
+        .guess-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 12px 0; }
+        .guess {
+            border: 2.5px solid #111; border-radius: 12px; background: #9ad5f8;
+            box-shadow: 3px 3px 0px #111; min-height: 78px; display: flex; align-items: center;
+            justify-content: center; text-align: center; padding: 10px 8px; font-weight: 700;
+            font-size: 12.5px; line-height: 1.5; cursor: pointer; transition: 0.25s;
+        }
+        .guess.revealed { background: #fff; animation: bubblePop 0.3s ease; cursor: default; }
+        .guess .q-mark { font-size: 22px; display: block; }
+        .more-list { display: none; margin-top: 12px; }
+        .more-list.show { display: block; animation: fadeIn 0.4s ease; }
+        .more-list ul { margin: 0; padding-left: 20px; font-size: 12.5px; line-height: 1.9; color: #444; }
+
+        /* --- 自我關懷小貼士 --- */
+        .tip-block {
+            border: 2px solid #111; border-radius: 12px; padding: 12px 14px; margin-bottom: 12px;
+            background: #fdfbf7; box-shadow: 2px 2px 0px #111; font-size: 13px; line-height: 1.65;
+        }
+        .tip-block b.tip-title { display: block; font-size: 13.5px; margin-bottom: 4px; }
+        .tip-block.gentle-note { background: #fff3e6; border-style: dashed; }
+
+        /* ★★★ 私隱聲明小字 ★★★ */
+        .privacy-note {
+            background: #fdfbf7; border: 2px dashed #ccc; border-radius: 10px;
+            padding: 10px 12px; font-size: 11px; line-height: 1.7; color: #888;
+            margin-bottom: 12px;
+        }
+        .privacy-note b { color: #666; }
+
+        /* ★★★ 頁內溫柔提示（取代 alert） ★★★ */
+        .note-alert {
+            display: none;
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            background: #fff3e6;
+            border: 2px dashed #f4a261;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            animation: bubblePop 0.3s ease;
+        }
+        .note-alert.show { display: block; }
+
+        /* --- 關係整理收據 --- */
+        .receipt-wrap { display: none; justify-content: center; margin-top: 20px; }
+        .receipt-wrap.show { display: flex; animation: fadeIn 0.5s ease; }
+        .receipt {
+            position: relative; background: #fff; width: 100%; max-width: 340px;
+            padding: 20px 18px 26px 18px; border: 2.5px solid #111; box-shadow: 5px 5px 0px #111;
+            font-size: 12px;
+        }
+        .receipt::before, .receipt::after {
+            content: ""; position: absolute; left: 0; right: 0; height: 10px;
+            background: radial-gradient(circle at 5px 5px, transparent 5px, #fff 5px);
+            background-size: 14px 10px;
+        }
+        .receipt::before { top: -8px; transform: rotate(180deg); }
+        .receipt::after { bottom: -8px; }
+        .r-center { text-align: center; }
+        .r-title { font-weight: 900; font-size: 16px; letter-spacing: 3px; }
+        .r-sub { font-family: 'Caveat', cursive; font-size: 13px; color: #888; }
+        .r-meta { font-size: 10px; color: #999; margin-top: 3px; }
+        .r-line { border-top: 2px dashed #111; margin: 10px 0; }
+        .r-item { display: flex; justify-content: space-between; margin: 3px 0; font-size: 11px; color: #444; }
+        .r-quote {
+            background: #fffbe6; border: 2px solid #111; border-radius: 8px; padding: 8px 10px;
+            font-weight: 700; text-align: center; margin: 8px 0; font-size: 12.5px; word-break: break-word; line-height: 1.6;
+        }
+        .r-total { display: flex; justify-content: space-between; font-weight: 900; font-size: 12.5px; margin: 6px 0; }
+        .fragile {
+            display: inline-block; border: 3px double #e63946; color: #e63946; font-weight: 900;
+            padding: 3px 12px; transform: rotate(-5deg); letter-spacing: 2px; margin: 8px auto 4px;
+            border-radius: 4px; background: rgba(255,255,255,0.75); font-size: 11.5px;
+        }
+        .r-gift { display: flex; align-items: center; gap: 6px; margin: 3px 0; font-weight: 700; font-size: 12px; }
+        .barcode {
+            height: 38px; margin: 10px auto 2px; max-width: 200px;
+            background: repeating-linear-gradient(90deg,
+                #111 0 2px, transparent 2px 5px, #111 5px 9px, transparent 9px 11px,
+                #111 11px 12px, transparent 12px 16px, #111 16px 19px, transparent 19px 21px);
+        }
+        .r-foot { font-size: 9.5px; color: #999; text-align: center; margin-top: 5px; line-height: 1.6; }
+        .save-hint {
+            display: none; text-align: center; margin-top: 14px; font-size: 12.5px; background: #eaf6ff;
+            border: 2px dashed #111; border-radius: 10px; padding: 10px 12px; font-weight: 700;
+        }
+        .save-hint.show { display: block; animation: fadeIn 0.5s ease; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="header">
+            <span class="org-badge">The Space for Relationship Loss and Self-integration</span>
+            <h1>關係失去整理所 🩹</h1>
+            <p style="margin-bottom:0;">帶著傷痕，溫柔整理。</p>
+        </div>
+
+        <!-- ================= PAGE 1: 覺察區（★ 整合「同一片天空」） ================= -->
+        <div id="page1" class="page active">
+            <div class="doodle-card">
+                <span class="zone-tag">Step 1：覺察區 🧳</span>
+                <h2>同一片天空：身心訊號覺察</h2>
+                <div class="quote-box">「明明只是分開了，為何個心會翳悶，甚至頭昏腦脹……是我的身體出了問題嗎？」</div>
+
+                <!-- ★★★ 選擇畫面 ★★★ -->
+                <div id="skyPick">
+                    <!-- ★ 偵測貼頂用的哨兵（1px，不佔視覺空間） -->
+                    <div id="cloudSentinel" style="height:1px;"></div>
+                    <!-- ★ 雲朵黏貼置頂：捲動時自動縮小 -->
+                    <div class="cloud-stage" id="cloudStage">
+                        <svg id="cloudSvg" viewBox="-100 -110 840 760" aria-label="雲朵">
+                            <!-- 天氣層（風放喺雲後面，避免遮面） -->
+                            <g id="weatherBack"></g>
+                            <g fill="#AEDCF6">
+                                <circle cx="165" cy="205" r="112"/><circle cx="320" cy="145" r="132"/>
+                                <circle cx="478" cy="205" r="112"/><circle cx="122" cy="318" r="100"/>
+                                <circle cx="320" cy="335" r="150"/><circle cx="518" cy="318" r="100"/>
+                                <circle cx="218" cy="378" r="108"/><circle cx="422" cy="378" r="108"/>
+                            </g>
+                            <!-- 面 -->
+                            <circle cx="272" cy="252" r="11" fill="#fff"/>
+                            <circle cx="350" cy="252" r="11" fill="#fff"/>
+                            <g id="mouthFlat"><rect x="278" y="293" width="58" height="11" rx="5.5" fill="#fff"/></g>
+                            <g id="mouthSmile" style="display:none">
+                                <path d="M278 292 Q307 314 336 292" stroke="#fff" stroke-width="11"
+                                      stroke-linecap="round" fill="none"/>
+                            </g>
+                            <circle cx="392" cy="300" r="15" fill="none" stroke="#fff" stroke-width="9"/>
+                            <!-- 天氣層（閃電、雨：喺雲前面但唔會遮面） -->
+                            <g id="weatherFront"></g>
+                            <!-- 膠布層（提交後才出現） -->
+                            <g id="plaster"></g>
+                        </svg>
+                        <span class="sticky-hint">☁️ 雲朵會陪你捲動</span>
+                    </div>
+
+                    <div class="text-content" style="text-align:center;">
+                        面對關係中的傷痛，最近你有以下身心反應嗎？（可多選）<br>
+                        <span style="font-size:11.5px; color:#999;">每點一項，這朵雲的天氣都會改變 ☁️</span>
+                    </div>
+
+                    <div class="tag-category">⚡ 你最近有經歷過以下【身體】訊號嗎？</div>
+                    <div class="tags-grid sky-chips" data-g="body"></div>
+
+                    <div class="tag-category">💧 【情緒】上呢？</div>
+                    <div class="tags-grid sky-chips" data-g="emo"></div>
+
+                    <div class="tag-category">🌀 【行為】上呢？</div>
+                    <div class="tags-grid sky-chips" data-g="beh"></div>
+
+                    <div class="feedback-box" id="symptom-feedback">
+                        點擊上方標籤，看看你的身心正為你承載著什麼？🤍
+                    </div>
+
+                    <div style="text-align: center; margin-top:20px;">
+                        <button class="action-btn" id="submitBtn" disabled onclick="submitSky()">🩹 為這朵雲，貼上一塊膠布</button>
+                    </div>
+                </div>
+
+                <!-- ★★★ 結果畫面 ★★★ -->
+                <div id="skyResult">
+                    <div class="quote-box" style="border-left-color:#2a9d8f;">原來，不只你一個。</div>
+
+                    <div class="cloud-stage">
+                        <svg id="cloudSvg2" viewBox="-100 -110 840 760"></svg>
+                    </div>
+
+                    <div class="sky" id="sky"></div>
+                    <div class="sky-count">至今，已有 <b id="totalN">0</b> 朵雲飄過這片天空</div>
+                    <div class="sky-sub">每朵雲，都帶著自己的天氣。</div>
+
+                    <!-- ★ 精簡版他人回應：一行總數＋小型標籤 -->
+                    <div class="others-mini">
+                        <div class="line">🤍 你選的反應，也有其他朋友經歷過：</div>
+                        <div class="tags" id="miniTags"></div>
+                    </div>
+
+                    <div class="feedback-box" style="background:#f0f9f4; border-color:#2a9d8f; margin-top:12px;">
+                        這些「不尋常」的身心反應，其實是面對不尋常壓力時的<b>「正常」反應</b>。<br>
+                        風會靜，雨會停，而雲，依然輕輕地飄。
+                    </div>
+
+                    <div style="text-align: center; margin-top:20px;">
+                        <button class="action-btn" onclick="switchPage('page2')">覺察了，前往整理區慢慢梳理 ➡️</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 2: 整理區 ================= -->
+        <div id="page2" class="page">
+            
+            <!-- Step 2-A: 非線性的哀傷歷程 -->
+            <div class="doodle-card">
+                <span class="zone-tag">Step 2-A：非線性軌跡 🌊</span>
+                <h2>非線性的哀傷歷程</h2>
+                <div class="quote-box">「明明昨天好像好轉了，為什麼今天又突然崩潰？我是否退步了？」</div>
+                
+                <div class="source-cite">Source: Kübler-Ross 哀傷五階段模型</div>
+                <div class="text-content">
+                    哀傷從來不是直線前進的。你可能會在以下五個階段來回穿梭。<b>先看看示範</b>——
+                </div>
+
+                <div class="svg-stage" style="height: 220px;">
+                    <svg class="stage-svg" viewBox="0 0 450 220">
+                        <!-- ★ 藍色實線：我們想像中的復原（一條直線向上） -->
+                        <path id="idealPath" d="M 40,160 C 150,150 260,125 410,60"
+                              fill="none" stroke="#457b9d" stroke-width="3"
+                              stroke-linecap="round" opacity="0.85"/>
+                        <text x="170" y="118" font-size="10.5" font-weight="bold" fill="#457b9d" opacity="0.9">我們想像中的復原</text>
+
+                        <!-- ★ 隱藏路徑：只作雲朵行走軌道，不顯示（每個人的路線獨特而無法預測） -->
+                        <path id="curvyPath"
+                              d="M 40,160
+                                 C 65,100 95,60 125,85
+                                 C 150,105 155,150 195,160
+                                 C 225,168 225,120 195,118
+                                 C 165,116 175,170 215,172
+                                 C 255,175 285,160 305,125
+                                 C 318,100 342,78 338,102
+                                 C 335,120 355,122 365,100
+                                 C 375,80 395,68 410,60"
+                              fill="none" stroke="none"/>
+
+                        <!-- ★ 橙色實線：真實的復原歷程（隨雲朵前行逐段顯現，後退時保留） -->
+                        <path id="trailPath"
+                              d="M 40,160
+                                 C 65,100 95,60 125,85
+                                 C 150,105 155,150 195,160
+                                 C 225,168 225,120 195,118
+                                 C 165,116 175,170 215,172
+                                 C 255,175 285,160 305,125
+                                 C 318,100 342,78 338,102
+                                 C 335,120 355,122 365,100
+                                 C 375,80 395,68 410,60"
+                              fill="none" stroke="#f4a261" stroke-width="4" stroke-linecap="round" opacity="0.95"/>
+
+                        <!-- ★ 五階段標籤（已刪編號、字體加大） -->
+                        <text x="18" y="184" font-size="16" font-weight="900" fill="#555">否認</text>
+                        <text x="92" y="60" font-size="16" font-weight="900" fill="#555">憤怒</text>
+                        <text x="158" y="202" font-size="16" font-weight="900" fill="#555">討價還價</text>
+                        <text x="272" y="194" font-size="16" font-weight="900" fill="#555">沮喪</text>
+                        <text x="392" y="40" font-size="16" font-weight="900" fill="#2a9d8f">接受</text>
+
+                        <!-- 雲朵角色 -->
+                        <g id="cloudGroupCurvy" transform="translate(40, 160)">
+                            <image href="Cloud.PNG" x="-50" y="-40" width="100" height="80" />
+                        </g>
+                    </svg>
+                </div>
+
+                <!-- ★ 圖例：藍實線／？你的路線／橙實線 -->
+                <div class="path-legend">
+                    <span><i class="legend-swatch swatch-blue"></i>我們想像中的復原</span>
+                    <span><i class="legend-question">?</i>你的路線（獨特・無法預測）</span>
+                    <span><i class="legend-swatch swatch-orange"></i>真實復原歷程 </span>
+                </div>
+
+                <div style="text-align: center;">
+                    <button class="action-btn" style="padding: 6px 12px; font-size:12px;" onclick="walkTangledPath()"> 一起走一趟復原路。 🚶‍♂️</button>
+                </div>
+
+                <!-- ★ 觸發物情緒氣泡（置於下方，易讀） -->
+                <div class="trigger-bubble" id="trigger-bubble"></div>
+
+                <div class="feedback-box" id="curvy-feedback" style="display:none; background:#f0f9f4; border-color: #2a9d8f; margin-top: 15px;">
+                    🌱 帶著這段經歷，你正在慢慢重新建立屬於自己的生活節奏。
+                </div>
+
+                <!-- ★★★ 併入反思：標記今日的你（單選，無手繪） ★★★ -->
+                <div class="tag-category" style="margin-top:18px;">📍 沉澱一下，在圖中標記：今日的你，大約在哪個位置？</div>
+                <div class="tags-grid" id="stagePick">
+                    <button class="tag-btn" onclick="pickStage(this)">否認</button>
+                    <button class="tag-btn" onclick="pickStage(this)">憤怒</button>
+                    <button class="tag-btn" onclick="pickStage(this)">討價還價</button>
+                    <button class="tag-btn" onclick="pickStage(this)">沮喪</button>
+                    <button class="tag-btn" onclick="pickStage(this)">接受</button>
+                    <button class="tag-btn" onclick="pickStage(this)">🔄 在幾個階段之間穿梭</button>
+                </div>
+                <div class="feedback-box" id="stage-feedback" style="min-height:44px;">
+                    無論標記在哪裡，都沒有「應該」的位置——來回，也是前行的一部分。🤍
+                </div>
+            </div>
+
+            <!-- Step 2-B: DPM 雙軌擺盪 -->
+            <div class="doodle-card">
+                <span class="zone-tag">Step 2-B：雙軌平衡室 🕰️</span>
+                <h2>失落與復原雙軌擺盪模式</h2>
+                <div class="quote-box">「理智上知道要向前看，但感性上卻不斷被回憶拉扯……」</div>
+                <div class="source-cite">Source: Stroebe & Schut (1999) 雙軌擺盪模式</div>
+                <div class="text-content">
+                    健康的復原不是一味堅強，而是在「失落」與「復原」兩端來回擺盪：
+                    <ul style="margin-top: 8px; margin-bottom: 12px; padding-left: 20px; line-height: 1.7;">
+                        <li><b>🌧️ 失落取向 (Loss)：</b> 允許哭泣、思念、情緒低落。</li>
+                        <li><b>🌱 復原取向 (Restoration)：</b> 逐步適應新角色、建立日常、嘗試新活動。</li>
+                    </ul>
+                </div>
+
+                <div class="svg-stage" id="swipe-stage" style="height: 180px; cursor: grab;">
+                    <svg class="stage-svg" viewBox="0 0 400 150">
+                        <rect x="0" y="0" width="200" height="150" fill="#fcf3f3" opacity="0.6"/>
+                        <rect x="200" y="0" width="200" height="150" fill="#f0f9f4" opacity="0.6"/>
+                        
+                        <text x="40" y="30" font-size="14" font-weight="bold" fill="#e63946" opacity="0.7">🌧️ 失落取向</text>
+                        <text x="300" y="30" font-size="14" font-weight="bold" fill="#2a9d8f" opacity="0.7">🌱 復原取向</text>
+
+                        <circle cx="200" cy="10" r="5" fill="#111" />
+                        <path d="M 180 10 L 220 10" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+                        <g id="pendulumGroup" style="transform-origin: 200px 10px; transform: rotate(0deg);">
+                            <line x1="200" y1="10" x2="200" y2="80" stroke="#111" stroke-width="2.5" stroke-dasharray="4 3" />
+                            <g transform="translate(200, 100)">
+                                <image href="Cloud.PNG" x="-90" y="-75" width="180" height="150" />
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="feedback-box" id="pendulum-feedback" style="background:#fff; border-color: #ccc;">
+                    👋 觀看雙軌來回擺盪的過程。
+                </div>
+
+                <div style="text-align: center; margin-top: 15px;">
+                    <button class="action-btn" style="padding: 8px 16px; font-size: 13px;" onclick="startLifeSequence()">經歷來回擺盪的歷程 🧭</button>
+                </div>
+
+                <!-- ★★★ 併入反思：四選一對照 ★★★ -->
+                <div class="tag-category" style="margin-top:18px;">🧭 對照兩張圖，你覺得此刻的自己較接近哪裡？（四選一）</div>
+                <div class="tags-grid" id="swingPick">
+                    <button class="tag-btn" onclick="pickSwing(this)">🌧️ 較接近失落取向</button>
+                    <button class="tag-btn" onclick="pickSwing(this)">🔄 兩邊來回擺盪中</button>
+                    <button class="tag-btn" onclick="pickSwing(this)">🌱 較接近復原取向</button>
+                    <button class="tag-btn" onclick="pickSwing(this)">🤷 說不清</button>
+                </div>
+                <div class="feedback-box" id="swing-feedback" style="min-height:44px;">
+                    無論在哪一端，都是歷程的一部分，沒有對錯。🤍
+                </div>
+            </div>
+
+            <!-- Step 2-C: 大腦神經可塑性 (Slider) -->
+            <div class="doodle-card">
+                <span class="zone-tag">Step 2-C：大腦解密 🧠</span>
+                <h2>心痛是真的，重塑也是真的</h2>
+                <div class="source-cite">Source: Ethan Kross (2011) / Neural Plasticity</div>
+                <div class="text-content">
+                    fMRI 掃描證實，經歷分離時，大腦負責<b>「生理疼痛」</b>的區域與<b>「杏仁核警報系統」</b>真的會被高度激活！你的痛不是錯覺。<br><br>
+                    但大腦擁有<b>「神經可塑性」</b>。拖動下方滑塊，看看當你「給予自己關懷」時，大腦會發生什麼變化？
+                </div>
+
+                <div class="svg-stage" style="height: 190px; background: #222; border-color: #444;">
+                    <svg viewBox="0 0 400 180">
+                        <path d="M120,100 C120,40 160,20 200,20 C240,20 280,40 280,100 C280,150 240,170 200,170 C160,170 120,150 120,100 Z" fill="none" stroke="#666" stroke-width="4" stroke-dasharray="8 6"/>
+                        
+                        <g id="pain-net">
+                            <circle cx="170" cy="80" r="14" fill="#e63946">
+                                <animate attributeName="r" values="12;16;12" dur="0.8s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="230" cy="110" r="18" fill="#e63946">
+                                <animate attributeName="r" values="15;19;15" dur="1s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="180" cy="130" r="10" fill="#e63946" />
+                            <path d="M170,80 L230,110 L180,130 Z" fill="none" stroke="#e63946" stroke-width="5" opacity="0.8"/>
+                        </g>
+
+                        <g id="heal-net" opacity="0">
+                            <circle cx="150" cy="120" r="12" fill="#2a9d8f" />
+                            <circle cx="210" cy="60" r="16" fill="#2a9d8f">
+                                <animate attributeName="r" values="14;17;14" dur="2s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="250" cy="90" r="12" fill="#2a9d8f" />
+                            <circle cx="240" cy="140" r="9" fill="#2a9d8f" />
+                            <path d="M150,120 Q 180,80 210,60 T 250,90 T 240,140" fill="none" stroke="#2a9d8f" stroke-width="3" stroke-linecap="round"/>
+                            <text x="205" y="55" font-size="12">✨</text>
+                            <text x="140" y="115" font-size="10">🌱</text>
+                        </g>
+                    </svg>
+                </div>
+                
+                <input type="range" id="brainSlider" class="custom-slider" min="0" max="100" value="0" oninput="updateBrainState(this.value)">
+                
+                <div class="feedback-box" id="brain-feedback" style="background: #ffebe6; border-color: #e63946;">
+                    🚨 <b>警報期：</b>負責恐懼與警報的杏仁核過度活躍，大腦感受到如同肉體受傷般的實體痛楚，處於「戰或逃」狀態。
+                </div>
+            </div>
+
+            <!-- Step 2-D: 互動繪圖 (Drawing Canvas) -->
+            <div class="doodle-card">
+                <span class="zone-tag">Step 2-D：重新築路 🛤️</span>
+                <h2>為大腦開闢新路徑</h2>
+                <div class="text-content">
+                    大腦神經迴路就像被走過無數次的小路。舊的痛苦習慣了被點亮，但你可以選擇開拓新路。<br>
+                    👇 <b>請用手指在畫布上滑動畫出一條新的神經迴路。</b>
+                </div>
+
+                <div class="svg-stage" id="draw-stage" style="height: 160px; touch-action: none; background: #fdfbf7;">
+                    <svg viewBox="0 0 400 160" id="draw-svg">
+                        <path d="M 40,80 L 120,40 L 200,120 L 280,50 L 360,90" fill="none" stroke="#e63946" stroke-width="8" stroke-dasharray="10 8" opacity="0.3"/>
+                        <text x="35" y="70" font-size="12" fill="#e63946" font-weight="bold">舊有神經迴路 ⛈️</text>
+                        <path id="user-path" d="" fill="none" stroke="#2a9d8f" stroke-width="6" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="feedback-box" id="draw-feedback">
+                    等待你開展新的生活及互動經驗... 🖌️
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= PAGE 3: 安放區 ================= -->
+        <div id="page3" class="page">
+
+            <!-- Step 3-A: 自我關懷・拆箱 -->
+            <div class="doodle-card">
+                <span class="zone-tag">Step 3-A：自我關懷 🫶</span>
+                <h2>拆箱大掃除：翻轉內在聲音</h2>
+                <div class="quote-box">「是不是我做錯了甚麼？為甚麼是我？」</div>
+                <div class="source-cite">Source: Kristin Neff (2003) 自我關懷理論</div>
+                <div class="text-content">
+                    面對關係分離與失去，大腦容易陷入自責或自憐。<br><br>
+                    心理學家克莉絲汀‧內夫提出<b>「自我關懷」</b>概念：<br>
+                    面對挫折、失敗或痛苦時，像對待好朋友般<b>善待、接納自己</b>，而非嚴厲批判。<br><br>
+                    👇 這三個紙箱收藏了我們可能對自己說的話。<b>點擊拆箱</b>，看看整理過後會變成甚麼——（再點一下可重新封箱，隨時重溫）
+                </div>
+
+                <div class="unbox-grid">
+                    <!-- 箱 1 -->
+                    <div class="unbox" data-color="blue" onclick="toggleBox(this)">
+                        <div class="flap flap-l"></div><div class="flap flap-r"></div>
+                        <div class="tape">📦 未整理・易碎品</div>
+                        <span class="crit">「我很沒用」</span>
+                        <div class="tap-hint">👆 點擊拆箱</div>
+                        <div class="inside">
+                            <span class="element-badge">🫶 善待自己</span>
+                            <div class="kind-line">「我現在很辛苦，我值得溫柔。」</div>
+                            <div class="detail">當遭受痛苦、失敗或感到不足時，像好友般給予自己溫暖與支持，而非冷漠、苛責。這份內在支持讓我們感到安全，更有心力面對挑戰、作出生活中必要的改變。</div>
+                            <br><span class="sorted-tag">已整理 ✔</span>
+                            <div class="close-hint">🔁 再點一下可重新封箱</div>
+                        </div>
+                    </div>
+                    <!-- 箱 2 -->
+                    <div class="unbox" data-color="orange" onclick="toggleBox(this)">
+                        <div class="flap flap-l"></div><div class="flap flap-r"></div>
+                        <div class="tape">📦 未整理・易碎品</div>
+                        <span class="crit">「只有我一個這麼慘」</span>
+                        <div class="tap-hint">👆 點擊拆箱</div>
+                        <div class="inside">
+                            <span class="element-badge">🌍 共通人性</span>
+                            <div class="kind-line">「受苦是人類的共同經驗。」</div>
+                            <div class="detail">遭遇困境時，我們常有一種非理性的孤獨感——彷彿「我」是世上唯一承受這種痛苦的人。但「人」的定義本身就意味著脆弱、有缺陷和不完美。當我們自我關懷，會發現苦難將我們與他人連結起來，而不是隔離。</div>
+                            <br><span class="sorted-tag">已整理 ✔</span>
+                            <div class="close-hint">🔁 再點一下可重新封箱</div>
+                        </div>
+                    </div>
+                    <!-- 箱 3 -->
+                    <div class="unbox" data-color="green" onclick="toggleBox(this)">
+                        <div class="flap flap-l"></div><div class="flap flap-r"></div>
+                        <div class="tape">📦 未整理・易碎品</div>
+                        <span class="crit">「我撐不下去了」</span>
+                        <div class="tap-hint">👆 點擊拆箱</div>
+                        <div class="inside">
+                            <span class="element-badge">🧘 靜觀</span>
+                            <div class="kind-line">「我留意到這份痛，但我不等於這份痛。」</div>
+                            <div class="detail">以平衡、靜觀的方式面對痛苦——既不壓抑也不誇大它。放開慣常的視角，以更全面的角度看待自身處境，防止「過度認同」於痛苦的想法和感受，避免被負面情緒吞噬。</div>
+                            <br><span class="sorted-tag">已整理 ✔</span>
+                            <div class="close-hint">🔁 再點一下可重新封箱</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 對照帶 -->
+                <div class="vs-strip">
+                    <div class="vs-item"><b>善待自己</b> vs <s>自我批判</s></div>
+                    <div class="vs-item"><b>共通人性</b> vs <s>孤立</s></div>
+                    <div class="vs-item"><b>靜觀</b> vs <s>過度認同</s></div>
+                </div>
+
+                <div class="feedback-box" id="unbox-feedback">
+                    自我關懷包含三大核心元素，逐一拆箱看看吧 📦
+                </div>
+            </div>
+
+            <!-- Step 3-B: 猜一猜 -->
+            <div class="doodle-card">
+                <span class="zone-tag">Step 3-B：猜一猜 🔮</span>
+                <h2>自我關懷會帶來甚麼改變？</h2>
+                <div class="text-content">
+                    研究發現，具有自我關懷態度的人更可能……<b>點擊卡片揭曉答案！</b>
+                </div>
+                <div class="guess-grid">
+                    <div class="guess" onclick="revealCard(this)" data-answer="🤝 寬容和體諒他人"><span><span class="q-mark">？</span>猜一猜</span></div>
+                    <div class="guess" onclick="revealCard(this)" data-answer="💪 認真負責，勇於承擔個人責任"><span><span class="q-mark">？</span>猜一猜</span></div>
+                    <div class="guess" onclick="revealCard(this)" data-answer="🙅 設定健康的界限，學會說「不」"><span><span class="q-mark">？</span>猜一猜</span></div>
+                    <div class="guess" onclick="revealCard(this)" data-answer="❤️ 在關係中感受真實與連結，體驗親密感"><span><span class="q-mark">？</span>猜一猜</span></div>
+                    <div class="guess" onclick="revealCard(this)" data-answer="🕊️ 在衝突局勢中尋求妥協方案"><span><span class="q-mark">？</span>猜一猜</span></div>
+                    <div class="guess" onclick="revealCard(this)" data-answer="😊 感到快樂、樂觀，並對自己的生活感到滿意"><span><span class="q-mark">？</span>猜一猜</span></div>
+                </div>
+                <div style="text-align:center;">
+                    <button class="action-btn" style="padding: 8px 16px; font-size: 13px;" onclick="toggleMoreList()">➕ 還有更多改變……</button>
+                </div>
+                <div class="more-list" id="more-list">
+                    <div class="feedback-box" style="display:block; text-align:left; margin-top:12px;">
+                        <ul>
+                            <li>自我關懷能降低大腦的警報，分泌催產素與安多酚，激活副交感神經系統，讓身體更快從壓力狀態恢復平靜。</li>
+                            <li>🪨 擁有穩定且無條件的自我價值感</li>
+                            <li>🪞 欣賞並滿足於自己的身體</li>
+                            <li>🧠 展現更高的情緒智商</li>
+                            <li>🌊 面對困境堅強有韌性</li>
+                            <li>🎯 以堅韌的毅力、積極性和決心，實現重要目標</li>
+                            <li>📚 專注於學習和個人成長</li>
+                            <li>💼 應對工作挑戰，感到更勝任、更有效率</li>
+                            <li>⚖️ 保持健康的工作與生活平衡</li>
+                            <li>🥗 吃營養豐富的食物、恆常運動、定期體檢</li>
+                            <li>😴 睡個好覺，擁有強壯的免疫系統</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3-C: 自我關懷小貼士 -->
+            <div class="doodle-card">
+                <span class="zone-tag">Step 3-C：小貼士 🌱</span>
+                <h2>如何培養自我關懷態度？</h2>
+
+                <div class="tip-block">
+                    <b class="tip-title">🍵 日常生活練習</b>
+                    自我關懷是一種善意的修行，而非愉悅的享受或躺平，允許自己慢慢學習，將它變成新的習慣。一些日常生活練習有助建立自我關懷態度，如：<b>自我關懷休息、書寫、支持性觸摸（把手輕放心口）、慈愛呼吸法</b>等。
+                </div>
+                <div class="tip-block gentle-note">
+                    <b class="tip-title">🕯️ 溫馨提示：「回燃」現象</b>
+                    起初練習時痛苦可能會加劇，這現象稱為「回燃」——敞開心扉讓愛湧入，舊傷也隨之流出。若感到被情緒淹沒，請容許自己暫時抽身：<b>專注呼吸、感受雙腳踏地、喝杯茶、撫摸貓咪</b>安定自己。照顧當下的需要，本身已是自我關懷。🤍
+                </div>
+
+                <!-- ★ 外部連結按鈕 -->
+                <div style="text-align:center; margin: 14px 0;">
+                    <a href="https://self-compassion.org/self-compassion-practices/" target="_blank" style="text-decoration:none;">
+                        <button class="action-btn" style="background:#fffbe6; width:100%; max-width:320px;">
+                            🔗 探索更多自我關懷練習（Dr. Kristin Neff）
+                        </button>
+                    </a>
+                </div>
+
+                <!-- ★★★ 併入反思：未來想試（可多選） ★★★ -->
+                <div class="tag-category">🌱 未來你想試試哪些自我關懷練習？（可多選）</div>
+                <div class="tags-grid" id="futurePick">
+                    <button class="tag-btn" onclick="pickFuture(this)">自我關懷休息</button>
+                    <button class="tag-btn" onclick="pickFuture(this)">書寫探索</button>
+                    <button class="tag-btn" onclick="pickFuture(this)">支持性觸摸</button>
+                    <button class="tag-btn" onclick="pickFuture(this)">慈愛呼吸法</button>
+                    <button class="tag-btn" onclick="pickFuture(this)">專注呼吸</button>
+                    <button class="tag-btn" onclick="pickFuture(this)">感受雙腳踏地</button>
+                    <button class="tag-btn" onclick="pickFuture(this)">喝杯茶</button>
+                    <button class="tag-btn" onclick="pickFuture(this)">撫摸小動物</button>
+                </div>
+                <div class="feedback-box" id="future-feedback" style="min-height:44px;">
+                    選一兩個最容易開始的就足夠了，慢慢來。🤍
+                </div>
+            </div>
+
+            <!-- Step 3-D: 心靈盒子 -->
+            <div class="doodle-card">
+                <span class="zone-tag">Step 3-D：心靈盒子 📮</span>
+                <h2>安放與封存</h2>
+                <div class="text-content">
+                    面對關係分離，有哪些東西是你此刻很想「放下」的？是一個人？一個疑問？還是等不到的抱歉，抑或是一句對自己的安慰？
+                </div>
+
+                <!-- ★★★ 私隱聲明（2027年3月31日後刪除） ★★★ -->
+                <div class="privacy-note">
+                    🔒 <b>私隱聲明：</b>您所提供的資料，會以<b>匿名方式</b>記錄，並作保密處理，主要供本服務了解參加者需要及改善服務之用，並會於本年度計劃結束（<b>2027年3月31日</b>）後刪除。內容不會用作識別任何個人身份。<br>
+                    ✋ 請<b>不要寫上姓名、電話或其他可識別個人身份的資料</b>。如您正面對難以承受的困擾，歡迎直接與在場工作人員傾談。🤍
+                </div>
+
+                <textarea class="doodle-textarea" id="self-note" placeholder="把它寫下來，暫時安放在這裡吧。"></textarea>
+
+                <!-- ★★★ 頁內溫柔提示（取代 alert） ★★★ -->
+                <div class="note-alert" id="note-alert"></div>
+                
+                <div style="text-align: center;">
+                    <button class="action-btn" onclick="generateTape()">封存並列印整理收據 🧾</button>
+                </div>
+
+                <div id="postcard-box" style="display:none; margin-top: 18px; padding: 18px; background: #fffbe6; border: 2.5px dashed #111; border-radius: 12px; text-align: center;">
+                    <h3 style="margin-top:0;">已安放 🤍</h3>
+                    <p id="postcard-content" style="font-size: 14.5px; font-weight: 700; color: #111; line-height: 1.6;"></p>
+                </div>
+
+                <!-- ★ 關係整理收據 -->
+                <div class="receipt-wrap" id="receiptWrap">
+                    <div class="receipt">
+                        <div class="r-center">
+                            <div class="r-title">關係失去整理所</div>
+                            <div class="r-sub">Relationship Loss Sorting Station · RECEIPT</div>
+                            <div class="r-meta"><span id="rNo"></span>　<span id="rDate"></span></div>
+                        </div>
+                        <div class="r-line"></div>
+                        <div class="r-item"><span>✔ 正視身心反應</span><span>已覺察</span></div>
+                        <div class="r-item"><span>✔ 標記哀傷位置</span><span id="rStage">已標記</span></div>
+                        <div class="r-item"><span>✔ 覺察雙軌擺盪</span><span id="rSwing">已覺察</span></div>
+                        <div class="r-item"><span>✔ 翻轉內在聲音 ×3</span><span>已拆箱</span></div>
+                        <div class="r-item"><span>✔ 未來想試的練習</span><span id="rFuture">保持開放</span></div>
+                        <div class="r-item"><span>✔ 心靈盒子</span><span>已封存 ×1</span></div>
+                        <div class="r-line"></div>
+                        <div style="font-size:10.5px; color:#999;">給自己的一句話：</div>
+                        <div class="r-quote" id="rQuote"></div>
+                        <div class="r-total"><span>應付金額</span><span>$0（無價）</span></div>
+                        <div class="r-center"><span class="fragile">FRAGILE 易碎——請溫柔對待</span></div>
+                        <div class="r-line"></div>
+                        <div class="r-center" style="font-weight:900; font-size:12.5px;">🎫 憑此收據到攤位領取心靈資源禮品包</div>
+                        <div style="margin-top:6px;">
+                            <div class="r-gift">🎁 鬆鬆壓力球 ×1</div>
+                            <div class="r-gift">🎁 自我關懷提示卡（7張）及木架 ×1</div>
+                        </div>
+                        <div class="r-line"></div>
+                        <div class="r-center" style="font-weight:700; font-size:12px;">帶著傷痕，繼續溫柔生活。🩹</div>
+                        <div class="barcode"></div>
+                        <div class="r-foot">明愛心營站──關係傷痛支援計劃<br></div>
+                    </div>
+                </div>
+                <div class="save-hint" id="saveHint">📸 請<b>截圖保存這張收據</b>，出示給攤位工作人員即可領取禮品！</div>
+            </div>
+
+            <!-- 資源閣（保留社區資源） -->
+            <div class="doodle-card" style="background-color: #fdfbf7;">
+                <span class="zone-tag" style="background: #9ad5f8;">🎁 資源閣</span>
+                <h2>心靈資源與社區支援</h2>
+                <div class="text-content">
+                    完成整理體驗並封存心靈盒子後，憑「關係整理收據」於實體攤位領取心靈資源禮品包。<br><br>
+                    帶著傷痕，繼續溫柔生活。🩹
+                </div>
+
+                <!-- 社區資源按鈕區塊 -->
+                <div style="margin-top: 18px; text-align: center;">
+                    <a href="https://example.com/community-resources.pdf" target="_blank" style="text-decoration: none;">
+                        <button class="action-btn" style="background: #fffbe6; width: 100%; max-width: 320px; padding: 12px 16px; font-size: 13.5px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                            <span> 查看社區支援資源 </span> 🔗
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 底部導覽列 -->
+    <div class="nav-bar">
+        <button class="nav-btn active" onclick="switchPage('page1')">1. 覺察</button>
+        <button class="nav-btn" onclick="switchPage('page2')">2. 整理</button>
+        <button class="nav-btn" onclick="switchPage('page3')">3. 安放</button>
+    </div>
+
+    <script>
+        // --- Navigation ---
+        function switchPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            const index = pageId === 'page1' ? 0 : (pageId === 'page2' ? 1 : 2);
+            document.querySelectorAll('.nav-btn').forEach((btn, i) => {
+                i === index ? btn.classList.add('active') : btn.classList.remove('active');
+            });
+            window.scrollTo(0,0);
+        }
+
+        /* =====================================================
+           ★★★ Page 1：同一片天空（整合版） ★★★
+           ===================================================== */
+        // ====== 症狀清單（三組：對應天氣元素） ======
+        const GROUPS = {
+            body:{ icon:'⚡', items:['失眠','頭昏腦脹','心口翳悶','腸胃不適','食慾改變','麻木無感'] },
+            emo :{ icon:'💧', items:['難以置信','不捨','無奈','傷心','憤怒','愧疚','羞恥','害怕','孤單'] },
+            beh :{ icon:'🌀', items:['難以專注','社交退縮','暴飲暴食'] }
+        };
+        const ICON_OF = {};
+        Object.entries(GROUPS).forEach(([g,v]) => v.items.forEach(s => ICON_OF[s] = v.icon));
+
+        // ====== 模擬統計（正式版接 Apps Script：GET counts / POST submit） ======
+        const mockCounts = {};
+        Object.values(GROUPS).forEach(v => v.items.forEach(s => {
+            mockCounts[s] = 8 + Math.floor(Math.random()*28);
+        }));
+        let mockTotal = 60 + Math.floor(Math.random()*40);
+
+        // ====== 天氣元素位置 ======
+        const BOLT_SPOTS = [[240,-50],[400,-60],[320,-20],[150,-25],[490,-20]];
+        const RAIN_SPOTS = [[180,508],[268,522],[356,510],[444,524],[532,508]];
+        const WIND_SPOTS = [[-95,240,1],[600,230,-1],[-95,370,1],[600,370,-1],[-90,510,1]];
+
+        function bolt(x,y,i){
+            return `<g opacity="0.9">
+              <polygon points="${x},${y-22} ${x-13},${y+4} ${x-2},${y+4} ${x-11},${y+26} ${x+13},${y-4} ${x+2},${y-4}"
+                fill="#FFD35C"/>
+              <animate attributeName="opacity" values="0.9;0.3;0.9" dur="${1.4+i*0.3}s" repeatCount="indefinite"/>
+            </g>`;
+        }
+        function drop(x,y,i){
+            return `<g>
+              <path transform="translate(${x},${y})"
+                d="M0 -13 C8 -2 8 8 0 13 C-8 8 -8 -2 0 -13" fill="#7FC3EC"/>
+              <animateTransform attributeName="transform" type="translate"
+                from="0 0" to="0 32" dur="${1.5+i*0.25}s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.9;0" dur="${1.5+i*0.25}s" repeatCount="indefinite"/>
+            </g>`;
+        }
+        function wind(x,y,dir,i){
+            const s = dir;
+            return `<g opacity="0.85">
+              <g transform="translate(${x},${y}) scale(${s},1)">
+                <path d="M0 0 c 22 -10 50 -12 72 -3 c 16 7 30 4 38 -7 a 12 12 0 1 0 -17 -9"
+                  stroke="#C7D3DC" stroke-width="10" fill="none" stroke-linecap="round"/>
+                <path d="M4 26 c 20 8 46 9 66 2 c 14 -5 26 -3 34 6 a 10 10 0 1 1 -15 8"
+                  stroke="#C7D3DC" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.7"/>
+              </g>
+              <animateTransform attributeName="transform" type="translate"
+                values="0 0; ${10*s} 0; 0 0" dur="${2.4+i*0.4}s" repeatCount="indefinite"/>
+            </g>`;
+        }
+
+        const skyCounts = { body:0, emo:0, beh:0 };
+        function drawWeather(){
+            let front = '', back = '';
+            for (let i=0; i<Math.min(skyCounts.body, 5); i++) front += bolt(...BOLT_SPOTS[i].slice(0,2), i);
+            for (let i=0; i<Math.min(skyCounts.emo , 5); i++) front += drop(...RAIN_SPOTS[i], i);
+            for (let i=0; i<Math.min(skyCounts.beh , 5); i++) back  += wind(...WIND_SPOTS[i], i);
+            document.getElementById('weatherFront').innerHTML = front;
+            document.getElementById('weatherBack').innerHTML  = back;
+        }
+
+        // ====== 產生標籤（doodle .tag-btn 風格） ======
+        const selectedSyms = new Set();
+        document.querySelectorAll('.sky-chips').forEach(box => {
+            const g = box.dataset.g;
+            GROUPS[g].items.forEach(sym => {
+                const c = document.createElement('button');
+                c.className = 'tag-btn';
+                c.textContent = sym;
+                c.onclick = () => {
+                    c.classList.toggle('active');
+                    if (c.classList.contains('active')) { selectedSyms.add(sym); skyCounts[g]++; }
+                    else { selectedSyms.delete(sym); skyCounts[g]--; }
+                    document.getElementById('submitBtn').disabled = selectedSyms.size === 0;
+                    drawWeather();
+                    updateSymptomFeedback();
+                };
+                box.appendChild(c);
+            });
+        });
+
+        function updateSymptomFeedback(){
+            const n = selectedSyms.size;
+            const fb = document.getElementById('symptom-feedback');
+            if (n === 0) fb.innerHTML = "點擊上方標籤，看看你的身心正為你承載著什麼？🤍";
+            else if (n <= 3) fb.innerHTML = `你選了 ${n} 個訊號，雲上的天氣也起了變化。<br>看見這些不舒服，是自我修復的第一步。辛苦你了。`;
+            else fb.innerHTML = `你選了 ${n} 個訊號，這朵雲正承受著風雨雷電。<br>你的身心正承受著巨大的壓力警報，請允許自己好好休息。`;
+        }
+
+        // ====== ★★★ 貼頂偵測：捲動時雲朵自動縮小 ★★★ ======
+        const cloudStage = document.getElementById('cloudStage');
+        const cloudSentinel = document.getElementById('cloudSentinel');
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(([entry]) => {
+                // 哨兵離開畫面頂部 → 雲朵處於貼頂狀態 → 縮小
+                cloudStage.classList.toggle('stuck', !entry.isIntersecting);
+            }, { threshold: 0 }).observe(cloudSentinel);
+        }
+
+        // ====== 招牌膠布 ======
+        const PLASTER = `<g transform="rotate(-55 480 282)" opacity="0">
+              <rect x="458" y="222" width="44" height="120" rx="22" fill="#fff"/>
+              <circle cx="480" cy="282" r="15" fill="#E64A3B"/>
+              <animate attributeName="opacity" from="0" to="1" dur="0.8s" begin="0.3s" fill="freeze"/>
+            </g>`;
+
+        // ====== 提交：貼膠布 → 結果畫面 ======
+        function submitSky(){
+            // 正式版：於此處 POST selectedSyms 至 Apps Script
+            selectedSyms.forEach(s => mockCounts[s]++);
+            mockTotal++;
+
+            // 複製雲朵至結果畫面
+            const svg2 = document.getElementById('cloudSvg2');
+            svg2.innerHTML = document.getElementById('cloudSvg').innerHTML;
+            svg2.querySelector('#mouthFlat').style.display = 'none';
+            svg2.querySelector('#mouthSmile').style.display = '';
+            // 天氣退散（soften，並非消失）
+            const wf = svg2.querySelector('#weatherFront');
+            const wb = svg2.querySelector('#weatherBack');
+            wf.removeAttribute('id'); wb.removeAttribute('id');
+            wf.style.transition = 'opacity 1.2s ease';
+            wb.style.transition = 'opacity 1.2s ease';
+            requestAnimationFrame(() => setTimeout(() => {
+                wf.style.opacity = '0.25'; wb.style.opacity = '0.25';
+            }, 400));
+            // 貼上一塊招牌膠布
+            svg2.querySelector('#plaster').innerHTML = PLASTER;
+
+            // ★ 精簡版他人回應：一行＋小型標籤
+            document.getElementById('miniTags').innerHTML =
+                [...selectedSyms].map(s => `<span>${ICON_OF[s]} ${s} <b>×${mockCounts[s]}</b></span>`).join('');
+
+            // 天空小雲
+            const sky = document.getElementById('sky');
+            sky.innerHTML = '';
+            const n = Math.min(mockTotal, 20);
+            for (let k = 0; k < n; k++) {
+                const el = document.createElement('div');
+                el.className = 'mini-cloud';
+                const w = 28 + Math.random()*32;
+                el.style.left = (Math.random()*88) + '%';
+                el.style.top  = (Math.random()*68) + '%';
+                el.style.animationDelay = (Math.random()*1.6) + 's';
+                el.innerHTML = `<svg width="${w}" viewBox="0 0 64 40">
+                    <g fill="#CFE9FB"><circle cx="18" cy="24" r="12"/><circle cx="32" cy="16" r="14"/>
+                    <circle cx="46" cy="24" r="12"/><circle cx="32" cy="28" r="13"/></g></svg>`;
+                sky.appendChild(el);
+            }
+            // 你的雲（深色、微笑、有膠布）最後飄入
+            const me = document.createElement('div');
+            me.className = 'mini-cloud';
+            me.style.left = '45%'; me.style.top = '28%'; me.style.animationDelay = '2s';
+            me.innerHTML = `<svg width="54" viewBox="0 0 64 40">
+                <g fill="#8FCBEF"><circle cx="18" cy="24" r="12"/><circle cx="32" cy="16" r="14"/>
+                <circle cx="46" cy="24" r="12"/><circle cx="32" cy="28" r="13"/></g>
+                <circle cx="26" cy="21" r="1.8" fill="#fff"/><circle cx="35" cy="21" r="1.8" fill="#fff"/>
+                <path d="M27 27 Q30.5 30 34 27" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                <g transform="rotate(-50 46 22)"><rect x="43.5" y="15" width="5" height="14" rx="2.5" fill="#fff"/>
+                <circle cx="46" cy="22" r="1.7" fill="#E64A3B"/></g></svg>`;
+            sky.appendChild(me);
+
+            document.getElementById('totalN').textContent = mockTotal;
+            document.getElementById('skyPick').style.display = 'none';
+            document.getElementById('skyResult').style.display = 'block';
+            window.scrollTo({top:0, behavior:'smooth'});
+        }
+
+        /* =====================================================
+           ★★★ 2-A / 2-B / 3-C 反思選擇（供收據使用） ★★★
+           ===================================================== */
+        let stageAns = '已標記', swingAns = '已覺察';
+        const futureSet = new Set();
+
+        function pickStage(btn){
+            document.querySelectorAll('#stagePick .tag-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            stageAns = btn.textContent.trim();
+            document.getElementById('stage-feedback').innerHTML =
+                `📍 你標記了「<b>${stageAns}</b>」。無論在哪裡，都沒有「應該」的位置——來回，也是前行的一部分。🤍`;
+        }
+        function pickSwing(btn){
+            document.querySelectorAll('#swingPick .tag-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            swingAns = btn.textContent.trim();
+            document.getElementById('swing-feedback').innerHTML =
+                `🧭 你此刻較接近「<b>${swingAns}</b>」。無論在哪一端，都是歷程的一部分，沒有對錯。🤍`;
+        }
+        function pickFuture(btn){
+            btn.classList.toggle('active');
+            const v = btn.textContent.trim();
+            btn.classList.contains('active') ? futureSet.add(v) : futureSet.delete(v);
+            const fb = document.getElementById('future-feedback');
+            fb.innerHTML = futureSet.size === 0
+                ? "選一兩個最容易開始的就足夠了，慢慢來。🤍"
+                : `🌱 你選了 ${futureSet.size} 個練習。由小事開始，把善意變成習慣。`;
+        }
+
+        // --- Page 2-A: 隱藏軌道 + 藍實線(想像) + 橙實線(真實) + 前後來回移動 ---
+        const curvyPath = document.getElementById('curvyPath');
+        const trailPath = document.getElementById('trailPath');
+        const cloudGroupCurvy = document.getElementById('cloudGroupCurvy');
+        const triggerBubble = document.getElementById('trigger-bubble');
+        let curvyAnimFrame = null;
+
+        // 初始化橙線：先完全隱藏（用 dashoffset 技巧，由起點逐段顯現）
+        const trailTotalLength = trailPath.getTotalLength();
+        trailPath.style.strokeDasharray = trailTotalLength;
+        trailPath.style.strokeDashoffset = trailTotalLength;
+
+        // ★ 行程關鍵幀：兩次「後退再前行」
+        const walkKeyframes = [
+            { t: 0,    p: 0    },
+            { t: 3.0,  p: 0.45 },   // 前行
+            { t: 4.3,  p: 0.30 },   // ← 後退 ①
+            { t: 7.3,  p: 0.75 },   // 再前行
+            { t: 8.4,  p: 0.62 },   // ← 後退 ②
+            { t: 11.0, p: 1    }    // 走到終點
+        ];
+        const walkDuration = walkKeyframes[walkKeyframes.length - 1].t;
+
+        const phaseMessages = [
+            { idx: 0, html: "🚶 出發了……每個人的復原歷程都是獨特的，沒有人能預先知道。", style: "walk" },
+            { idx: 1, html: "🌀 <b>感覺好像退步了？</b> 有時會感覺前進三步又後退兩步，但整體是向前行。", style: "trigger" },
+            { idx: 2, html: "🚶 再次前行。", style: "walk" },
+            { idx: 3, html: "🌀 <b>不要緊，不用急。</b><br>來回搖擺，本來就是復原的一部分。", style: "trigger" },
+            { idx: 4, html: "🚶 帶著經歷，繼續向前……", style: "walk" }
+        ];
+
+        function setBubbleStyle(styleName) {
+            if (styleName === "trigger") {
+                triggerBubble.style.background = "#fff3e6";
+                triggerBubble.style.borderColor = "#f4a261";
+                triggerBubble.style.boxShadow = "3px 3px 0px rgba(244,162,97,0.5)";
+            } else if (styleName === "end") {
+                triggerBubble.style.background = "#e8f4fd";
+                triggerBubble.style.borderColor = "#457b9d";
+                triggerBubble.style.boxShadow = "3px 3px 0px rgba(69,123,157,0.4)";
+            } else {
+                triggerBubble.style.background = "#fdfbf7";
+                triggerBubble.style.borderColor = "#ccc";
+                triggerBubble.style.boxShadow = "3px 3px 0px rgba(0,0,0,0.1)";
+            }
+        }
+
+        function updateCloudOnPath(progress) {
+            const pathLength = curvyPath.getTotalLength();
+            progress = Math.max(0, Math.min(1, progress));
+            const point = curvyPath.getPointAtLength(progress * pathLength);
+            cloudGroupCurvy.setAttribute('transform', `translate(${point.x}, ${point.y})`);
+            return point;
+        }
+        updateCloudOnPath(0);
+
+        function easeInOut(x) {
+            return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+        }
+
+        function getProgressAtTime(t) {
+            for (let i = 0; i < walkKeyframes.length - 1; i++) {
+                const a = walkKeyframes[i], b = walkKeyframes[i + 1];
+                if (t >= a.t && t <= b.t) {
+                    const local = (t - a.t) / (b.t - a.t);
+                    return { progress: a.p + (b.p - a.p) * easeInOut(local), segment: i };
+                }
+            }
+            return { progress: 1, segment: walkKeyframes.length - 2 };
+        }
+
+        function walkTangledPath() {
+            cancelAnimationFrame(curvyAnimFrame);
+            let startTime = null;
+            let maxProgress = 0;
+            let currentSegment = -1;
+
+            trailPath.style.strokeDashoffset = trailTotalLength;
+            const feedbackBox = document.getElementById('curvy-feedback');
+            if (feedbackBox) feedbackBox.style.display = 'none';
+            triggerBubble.style.display = 'block';
+            triggerBubble.dataset.zone = "";
+
+            function animateWalk(timestamp) {
+                if (!startTime) startTime = timestamp;
+                let t = (timestamp - startTime) / 1000;
+                t = Math.min(t, walkDuration);
+
+                const { progress, segment } = getProgressAtTime(t);
+                updateCloudOnPath(progress);
+
+                if (progress > maxProgress) {
+                    maxProgress = progress;
+                    trailPath.style.strokeDashoffset = trailTotalLength * (1 - maxProgress);
+                }
+
+                if (segment !== currentSegment) {
+                    currentSegment = segment;
+                    const msg = phaseMessages[segment];
+                    if (msg) {
+                        triggerBubble.innerHTML = msg.html;
+                        setBubbleStyle(msg.style);
+                        triggerBubble.style.animation = 'none';
+                        void triggerBubble.offsetWidth;
+                        triggerBubble.style.animation = 'bubblePop 0.3s ease';
+                    }
+                }
+
+                if (t < walkDuration) {
+                    curvyAnimFrame = requestAnimationFrame(animateWalk);
+                } else {
+                    triggerBubble.innerHTML = "🏁 回望你的復原路線——有起有伏、有後退、有繞圈。允許自己在修復路上有起有伏，溫柔包容自己的反覆。<br><b>👇 現在，沉澱一下，在下方標記今日的你。</b>";
+                    setBubbleStyle("end");
+                    if (feedbackBox) feedbackBox.style.display = 'flex';
+                }
+            }
+            curvyAnimFrame = requestAnimationFrame(animateWalk);
+        }
+
+        // --- Page 2-B: DPM Animated Sequence ---
+        const pendulumGroup = document.getElementById('pendulumGroup');
+        const penFeedback = document.getElementById('pendulum-feedback');
+        let pendulumAnimId = null;
+
+        function startLifeSequence() {
+            if (pendulumAnimId) cancelAnimationFrame(pendulumAnimId);
+            let startTime = null;
+            
+            function animatePendulum(timestamp) {
+                if (!startTime) startTime = timestamp;
+                let t = (timestamp - startTime) / 1000;
+                let angle = 0;
+                
+                if (t < 2.0) {
+                    angle = 35 * Math.cos(t * 7) * Math.exp(-t * 0.4) + 5;
+                    penFeedback.innerHTML = "🧭 <b>初期：</b>剛經歷分離，情緒在「失落端」劇烈擺盪";
+                    penFeedback.style.background = "#fcf3f3";
+                } 
+                else if (t < 4.0) {
+                    let localT = t - 2.0;
+                    let center = 5 - 25 * (1 - Math.exp(-localT * 2));
+                    angle = center + 20 * Math.cos(localT * 5) * Math.exp(-localT * 0.8);
+                    penFeedback.innerHTML = "🌱 <b>適應期：</b>隨時間過去，擺盪減緩，重心移向「復原取向」。";
+                    penFeedback.style.background = "#f0f9f4";
+                }
+                else if (t < 5.5) {
+                    let localT = t - 4.0;
+                    angle = -20 + 50 * Math.sin((localT / 1.5) * Math.PI);
+                    penFeedback.innerHTML = "🌧️ <b>觸發點：</b>遇上節日或舊地重遊，仍會再次擺回「失落取向」...";
+                    penFeedback.style.background = "#fcf3f3";
+                }
+                else if (t < 8.5) {
+                    let localT = t - 5.5;
+                    angle = -20 + 15 * Math.sin(localT * 4) * Math.exp(-localT * 1.2);
+                    penFeedback.innerHTML = "🤍 <b>長遠復原：</b>接納偶爾的擺盪，帶著傷痕繼續溫柔生活。<br><b>👇 之後試著在下方選一選：你較接近哪裡？</b>";
+                    penFeedback.style.background = "#fdfbf7";
+                }
+                else {
+                    pendulumGroup.style.transform = `rotate(-20deg)`;
+                    return;
+                }
+                
+                pendulumGroup.style.transform = `rotate(${angle}deg)`;
+                pendulumAnimId = requestAnimationFrame(animatePendulum);
+            }
+            pendulumAnimId = requestAnimationFrame(animatePendulum);
+        }
+
+        // --- Page 2-C: Brain Plasticity Slider ---
+        const painNet = document.getElementById('pain-net');
+        const healNet = document.getElementById('heal-net');
+        const brainFeedback = document.getElementById('brain-feedback');
+
+        function updateBrainState(val) {
+            let ratio = val / 100;
+            painNet.style.opacity = Math.max(0, 1 - (ratio * 1.5)); 
+            healNet.style.opacity = ratio;
+
+            if (val < 30) {
+                brainFeedback.innerHTML = "🚨 <b>警報期：</b>杏仁核過度活躍，大腦感受到如同肉體受傷般的實體痛楚。";
+                brainFeedback.style.background = "#ffebe6";
+                brainFeedback.style.borderColor = "#e63946";
+            } else if (val < 70) {
+                brainFeedback.innerHTML = "🕰️ <b>過渡期：</b>當你嘗試照顧自己或接觸新事物，大腦正悄悄建立新的神經連結。";
+                brainFeedback.style.background = "#fffbe6";
+                brainFeedback.style.borderColor = "#f4a261";
+            } else {
+                brainFeedback.innerHTML = "🌱 <b>重塑期：</b>神經可塑性發揮作用！新的情緒調節迴路變強，舊的痛覺連接逐漸削弱。";
+                brainFeedback.style.background = "#f0f9f4";
+                brainFeedback.style.borderColor = "#2a9d8f";
+            }
+        }
+
+        // --- Page 2-D: Drawing Canvas ---
+        const drawSvg = document.getElementById('draw-svg');
+        const userPath = document.getElementById('user-path');
+        const drawFeedback = document.getElementById('draw-feedback');
+        let isDrawing = false;
+        let drawPoints = [];
+
+        function getMousePos(evt) {
+            let CTM = drawSvg.getScreenCTM();
+            let x = evt.touches ? evt.touches[0].clientX : evt.clientX;
+            let y = evt.touches ? evt.touches[0].clientY : evt.clientY;
+            return { x: (x - CTM.e) / CTM.a, y: (y - CTM.f) / CTM.d };
+        }
+
+        function startDraw(e) {
+            isDrawing = true;
+            drawPoints = [];
+            drawPoints.push(getMousePos(e));
+            updateDrawPath();
+            drawFeedback.innerHTML = "正在繪製新的修復路徑... ✍️";
+            drawFeedback.style.background = "#e8f4fd";
+        }
+
+        function draw(e) {
+            if(!isDrawing) return;
+            e.preventDefault(); 
+            drawPoints.push(getMousePos(e));
+            updateDrawPath();
+        }
+
+        function endDraw() {
+            if(!isDrawing) return;
+            isDrawing = false;
+            if(drawPoints.length > 15) {
+                drawFeedback.innerHTML = "✨「每一次你照顧自己，都是在為大腦鋪設這條新的神經迴路。大腦會記住這份溫柔。」";
+                drawFeedback.style.background = "#f0f9f4";
+            } else {
+                drawFeedback.innerHTML = "畫得太短了，試著畫一條長一點的連線吧！";
+            }
+        }
+
+        function updateDrawPath() {
+            if(drawPoints.length < 2) return;
+            let d = `M ${drawPoints[0].x} ${drawPoints[0].y}`;
+            for(let i=1; i<drawPoints.length; i++) {
+                d += ` L ${drawPoints[i].x} ${drawPoints[i].y}`;
+            }
+            userPath.setAttribute('d', d);
+        }
+
+        drawSvg.addEventListener('mousedown', startDraw);
+        drawSvg.addEventListener('mousemove', draw);
+        window.addEventListener('mouseup', endDraw);
+        drawSvg.addEventListener('touchstart', startDraw, {passive: false});
+        drawSvg.addEventListener('touchmove', draw, {passive: false});
+        window.addEventListener('touchend', endDraw);
+
+        // --- Page 3-A: 拆箱效果（★ 可重複開合版本） ---
+        let allBoxesEverOpened = false;
+
+        function toggleBox(el) {
+            el.classList.toggle('opened');
+            updateUnboxFeedback();
+        }
+
+        function updateUnboxFeedback() {
+            const openedNow = document.querySelectorAll('.unbox.opened').length;
+            const fb = document.getElementById('unbox-feedback');
+
+            if (openedNow >= 3) allBoxesEverOpened = true;
+
+            if (openedNow === 0) {
+                fb.innerHTML = allBoxesEverOpened
+                    ? "📦 全部重新封箱了。隨時可以再次拆開，重溫自我關懷的三大元素。"
+                    : "自我關懷包含三大核心元素，逐一拆箱看看吧 📦";
+                fb.style.background = "#fdfbf7";
+                fb.style.borderColor = "#111";
+            } else if (openedNow === 1) {
+                fb.innerHTML = "拆開了 1 個箱子 📦 還有 2 個……";
+                fb.style.background = "#fdfbf7";
+                fb.style.borderColor = "#111";
+            } else if (openedNow === 2) {
+                fb.innerHTML = "拆開了 2 個箱子 📦 只剩最後 1 個……";
+                fb.style.background = "#fdfbf7";
+                fb.style.borderColor = "#111";
+            } else {
+                fb.innerHTML = "🤍 三個箱子都整理好了。<br><b>善待自己・共通人性・靜觀</b>——這就是自我關懷的三大核心元素。<br>下次內在批判的聲音出現時，試著把它溫柔地重新整理一次。";
+                fb.style.background = "#f0f9f4";
+                fb.style.borderColor = "#2a9d8f";
+            }
+        }
+
+        // --- Page 3-B: 猜一猜揭示卡 ---
+        function revealCard(el) {
+            if (el.classList.contains('revealed')) return;
+            el.classList.add('revealed');
+            el.innerHTML = `<span>${el.dataset.answer}</span>`;
+        }
+        function toggleMoreList() {
+            document.getElementById('more-list').classList.toggle('show');
+        }
+
+        // ★★★ 頁內溫柔提示（取代 alert） ★★★
+        function showNoteAlert(msg) {
+            const el = document.getElementById('note-alert');
+            el.innerHTML = msg;
+            el.classList.remove('show');
+            void el.offsetWidth;
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 4000);
+        }
+
+        // --- Page 3-D: Tape Generation + 收據 ---
+        function generateTape() {
+            const note = document.getElementById('self-note').value;
+            if (note.trim() === "") {
+                showNoteAlert("✍️ 請先寫下你想安放的話 🤍");
+                return;
+            }
+
+            const btn = document.querySelector('.action-btn[onclick="generateTape()"]');
+            const originalText = btn.innerText;
+            btn.innerText = "正在封存中... 📦";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzR2MXpmBoisKX5R3Y5zRDj32yaKqPd7EmL4-N70rDekjvlx0a-gwmdmOoKTED-k74/exec';
+
+            let formData = new FormData();
+            formData.append('message', note);
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    document.getElementById('postcard-content').innerText = `「${note}」`;
+                    document.getElementById('postcard-box').style.display = 'block';
+
+                    printReceipt(note);
+
+                    document.getElementById('self-note').value = "";
+                    btn.innerText = originalText;
+                    btn.style.opacity = "1";
+                    btn.disabled = false;
+                })
+                .catch(error => {
+                    showNoteAlert("📡 封存失敗，請檢查網路連線後再試一次 🤍");
+                    btn.innerText = originalText;
+                    btn.style.opacity = "1";
+                    btn.disabled = false;
+                });
+        }
+
+        function printReceipt(note) {
+            document.getElementById('rQuote').innerText = `「${note}」`;
+            const d = new Date();
+            const pad = n => n < 10 ? '0' + n : n;
+            document.getElementById('rDate').innerText =
+                `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+            document.getElementById('rNo').innerText = "No. HC" + Math.floor(1000 + Math.random() * 9000);
+
+            // ★ 印上 2-A / 2-B / 3-C 的反思選擇
+            document.getElementById('rStage').innerText = stageAns;
+            document.getElementById('rSwing').innerText = swingAns;
+            document.getElementById('rFuture').innerText =
+                futureSet.size ? [...futureSet].slice(0,3).join('、') + (futureSet.size > 3 ? '…' : '') : '保持開放 🤍';
+
+            document.getElementById('receiptWrap').classList.add('show');
+            document.getElementById('saveHint').classList.add('show');
+            document.getElementById('receiptWrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>
