@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>關係失去整理所 🩹｜明愛心營站─ 關係傷痛支援計劃</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Noto+Sans+HK:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background-color: #f4fafe;
+            background-image: 
+                linear-gradient(rgba(154, 213, 248, 0.3) 1.5px, transparent 1.5px),
+                linear-gradient(90deg, rgba(154, 213, 248, 0.3) 1.5px, transparent 1.5px);
+            background-size: 22px 22px;
+            font-family: 'Noto Sans HK', sans-serif;
+            color: #111;
+            margin: 0;
+            padding: 20px 15px 80px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container { max-width: 520px; width: 100%; }
+
+        /* ★★★ 雙語切換：body.lang-en 時顯示 .en、隱藏 .zh ★★★ */
+        body.lang-en .zh { display: none !important; }
+        body:not(.lang-en) .en { display: none !important; }
+
+        /* ★ 語言切換掣（固定右上角） */
+        .lang-btn {
+            position: fixed; top: 12px; right: 12px; z-index: 200;
+            background: #fffbe6; border: 2.5px solid #111; border-radius: 20px;
+            padding: 6px 15px; font-weight: 900; font-size: 13px; cursor: pointer;
+            box-shadow: 3px 3px 0px #111; font-family: inherit; letter-spacing: 1px;
+            transition: 0.1s;
+        }
+        .lang-btn:active { transform: translate(2px,2px); box-shadow: 1px 1px 0px #111; }
+
+        /* Header */
+        .header { text-align: center; margin-bottom: 20px; }
+        .header .org-badge {
+            display: inline-block; background: #9ad5f8; color: #111; font-size: 10px; font-weight: 700;
+            padding: 3px 12px; border-radius: 12px; letter-spacing: 1px; margin-bottom: 8px;
+            border: 2px solid #111; box-shadow: 2px 2px 0px #111;
+        }
+        .header h1 { font-family: 'Caveat', 'Noto Sans HK', cursive; font-size: 34px; margin: 0; line-height: 1.2; }
+        
+        /* Navigation (Pages) */
+        .nav-bar {
+            position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%);
+            background: #fff; border: 3px solid #111; border-radius: 30px;
+            display: flex; padding: 5px; box-shadow: 4px 4px 0px #111; z-index: 100;
+            width: 90%; max-width: 400px; justify-content: space-between;
+        }
+        .nav-btn {
+            flex: 1; background: transparent; border: none; font-size: 14px; font-weight: 700;
+            padding: 10px 0; border-radius: 20px; cursor: pointer; transition: 0.2s;
+            font-family: inherit; color: #555;
+        }
+        .nav-btn.active { background: #111; color: #fff; }
+
+        /* Pages */
+        .page { display: none; animation: fadeIn 0.4s ease forwards; }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Card Styles */
+        .doodle-card {
+            background: #ffffff; border: 3.5px solid #111; border-radius: 18px;
+            box-shadow: 6px 6px 0px #111; padding: 22px; margin-bottom: 24px; position: relative;
+        }
+        .zone-tag {
+            font-size: 13px; background: #fffbe6; border: 2px solid #111; display: inline-block;
+            padding: 3px 12px; border-radius: 12px; margin-bottom: 12px; font-weight: bold; box-shadow: 2px 2px 0px #111;
+        }
+        .doodle-card h2 { font-size: 22px; margin-top: 0; margin-bottom: 12px; }
+        
+        .quote-box {
+            background: #fdfbf7; border-left: 4.5px solid #9ad5f8; padding: 12px 15px;
+            margin-bottom: 15px; border-radius: 0 8px 8px 0; font-size: 14px; font-weight: 700; line-height: 1.5;
+        }
+        
+        .text-content { font-size: 13.5px; line-height: 1.65; color: #444; margin-bottom: 16px; }
+        
+        /* Academic Source Corner */
+        .source-cite {
+            text-align: right; font-size: 10.5px; color: #999; margin-top: -10px; margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        /* Tags & Buttons */
+        .tag-category { font-weight: 700; font-size: 13px; margin-bottom: 8px; color: #333; }
+        .tags-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+        .tag-btn {
+            background: #fff; border: 2px solid #ccc; border-radius: 20px; padding: 7px 14px;
+            font-size: 13px; font-weight: 700; cursor: pointer; color: #666; transition: all 0.2s;
+            font-family: inherit;
+        }
+        .tag-btn.active, .tag-btn:active {
+            background: #9ad5f8; border-color: #111; color: #111; box-shadow: 3px 3px 0px #111; transform: translateY(-2px);
+        }
+        .action-btn {
+            background: #9ad5f8; border: 2.5px solid #111; border-radius: 10px; padding: 10px 20px;
+            font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: 3px 3px 0px #111; transition: 0.1s;
+            font-family: inherit;
+        }
+        .action-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #111; }
+        .action-btn:disabled { background: #ddd; color: #999; box-shadow: 3px 3px 0px #999; cursor: not-allowed; }
+
+        /* Status & Feedback Boxes */
+        .feedback-box {
+            background: #fdfbf7; border: 2px dashed #111; border-radius: 10px; padding: 14px 16px;
+            font-size: 13px; line-height: 1.75; text-align: center;
+            margin-top: 15px; font-weight: 500; transition: 0.3s;
+        }
+
+        /* SVG Stage */
+        .svg-stage {
+            width: 100%; height: 210px; position: relative; margin: 10px 0;
+            background: #fafafa; border: 2px dashed #ccc; border-radius: 12px;
+            touch-action: pan-y; overflow: hidden;
+        }
+        svg.stage-svg { width: 100%; height: 100%; overflow: visible; }
+
+        /* ★ 圖例 (Legend) */
+        .path-legend {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+            font-size: 11px; font-weight: 700; color: #555; margin: 6px 0 12px 0;
+        }
+        .path-legend span.leg { display: inline-flex; align-items: center; gap: 4px; }
+        .legend-swatch { display: inline-block; width: 22px; height: 0; border-radius: 3px; }
+        .swatch-blue   { border-top: 3px solid #457b9d; }
+        .swatch-orange { border-top: 4px solid #f4a261; }
+        .legend-question {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 20px; height: 20px; border: 2px dashed #999; border-radius: 50%;
+            color: #999; font-size: 12px; font-weight: 900;
+        }
+
+        /* ★ 觸發物情緒氣泡 */
+        .trigger-bubble {
+            display: none; margin-top: 12px; padding: 12px 15px;
+            background: #fff3e6; border: 2.5px solid #f4a261; border-radius: 14px;
+            font-size: 13px; line-height: 1.6; font-weight: 700; text-align: center;
+            box-shadow: 3px 3px 0px rgba(244,162,97,0.5);
+            animation: bubblePop 0.3s ease;
+        }
+        @keyframes bubblePop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        
+        /* Custom Slider */
+        .custom-slider {
+            -webkit-appearance: none; width: 100%; height: 12px; background: #ddd;
+            border-radius: 10px; border: 2px solid #111; outline: none; margin: 15px 0;
+        }
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 24px; height: 24px;
+            border-radius: 50%; background: #9ad5f8; border: 3px solid #111; cursor: pointer; box-shadow: 2px 2px 0px #111;
+        }
+
+        .doodle-textarea {
+            width: 100%; height: 100px; border: 2.5px solid #111; border-radius: 10px; padding: 12px;
+            font-size: 14px; resize: none; margin-bottom: 12px; font-family: inherit;
+        }
+
+        /* ★★★ Step 1：同一片天空 ★★★ */
+        .cloud-stage { display: flex; justify-content: center; margin: 2px 0; }
+        .cloud-stage svg { width: 96%; max-width: 400px; height: auto; }
+
+        #skyPick .cloud-stage {
+            position: sticky; top: 8px; z-index: 60;
+            background: rgba(255, 255, 255, 0.94);
+            border: 2px dashed #9ad5f8; border-radius: 14px;
+            padding: 2px 0 4px 0; margin-bottom: 12px;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 3px 10px rgba(58, 90, 120, 0.12);
+            transition: padding 0.35s ease;
+        }
+        #skyPick .cloud-stage svg {
+            max-width: 250px;
+            transition: max-width 0.35s ease;
+        }
+        #skyPick .cloud-stage .sticky-hint {
+            position: absolute; bottom: 4px; right: 10px;
+            font-size: 9.5px; color: #9ad5f8; font-weight: 700; letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+        }
+        #skyPick .cloud-stage.stuck { padding: 0; }
+        #skyPick .cloud-stage.stuck svg { max-width: 120px; }
+        #skyPick .cloud-stage.stuck .sticky-hint { opacity: 0; }
+
+        #skyResult { display: none; }
+        .sky {
+            position: relative; height: 110px; overflow: hidden; margin: 4px 0;
+            background: #eaf6ff; border: 2px dashed #9ad5f8; border-radius: 12px;
+        }
+        .sky .mini-cloud { position: absolute; opacity: 0; animation: floatIn 1.4s ease forwards; }
+        @keyframes floatIn { from { opacity: 0; transform: translateY(14px); } to { opacity: .9; transform: translateY(0); } }
+        .sky-count { text-align: center; font-size: 14px; font-weight: 700; color: #333; margin-top: 10px; }
+        .sky-count b { color: #e63946; font-size: 17px; }
+        .sky-sub { text-align: center; font-size: 11.5px; color: #999; margin: 4px 0 10px; letter-spacing: 2px; }
+
+        .others-mini {
+            background: #fdfbf7; border: 2px dashed #111; border-radius: 10px;
+            padding: 10px 12px; margin-top: 10px;
+        }
+        .others-mini .line { font-size: 12.5px; font-weight: 700; color: #444; margin-bottom: 7px; }
+        .others-mini .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .others-mini .tags > span {
+            font-size: 11px; font-weight: 700; background: #fff; border: 2px solid #ccc;
+            color: #555; border-radius: 20px; padding: 2px 9px;
+        }
+        .others-mini .tags b { color: #e63946; }
+
+        /* ★★★ 安放區樣式 ★★★ */
+        .unbox-grid { display: flex; flex-direction: column; gap: 16px; margin: 15px 0; }
+        .unbox {
+            position: relative; border: 3px solid #111; border-radius: 14px;
+            background: #e8cda6; box-shadow: 4px 4px 0px #111; cursor: pointer;
+            padding: 52px 16px 16px 16px; overflow: hidden;
+            transition: background 0.6s ease;
+        }
+        .unbox .flap {
+            position: absolute; top: 0; height: 38px; width: 50.5%;
+            background: #dbb888; border-bottom: 2.5px solid #111; z-index: 3;
+            transition: transform 0.55s ease, opacity 0.45s ease;
+        }
+        .unbox .flap-l { left: 0; transform-origin: top left; border-right: 1.5px dashed #b08d5e; }
+        .unbox .flap-r { right: 0; transform-origin: top right; }
+        .unbox.opened .flap-l { transform: translateY(-6px) rotate(-80deg); opacity: 0; }
+        .unbox.opened .flap-r { transform: translateY(-6px) rotate(80deg); opacity: 0; }
+        .unbox .tape {
+            position: absolute; top: 8px; left: 50%; transform: translateX(-50%) rotate(-2deg);
+            background: #fffbe6; border: 2px solid #111; border-radius: 6px; padding: 2px 10px;
+            font-size: 11px; font-weight: 700; z-index: 4; white-space: nowrap;
+            transition: 0.5s ease;
+        }
+        .unbox.opened .tape { opacity: 0; transform: translateX(-50%) translateY(-32px) rotate(14deg); }
+        .unbox .crit {
+            display: block; text-align: center; background: #fff; border: 2.5px solid #111;
+            border-radius: 10px; padding: 12px 10px; font-weight: 900; font-size: 16px;
+            box-shadow: 2px 2px 0px #111; transition: 0.5s ease;
+        }
+        .unbox.opened .crit {
+            text-decoration: line-through; color: #999; font-size: 12px; font-weight: 700;
+            padding: 4px 8px; box-shadow: none; background: #f3f3f3; border-color: #ccc;
+        }
+        .unbox .tap-hint { text-align: center; font-size: 11px; font-weight: 700; color: #8a6d47; margin-top: 8px; transition: 0.3s; }
+        .unbox.opened .tap-hint { display: none; }
+        .unbox .inside {
+            max-height: 0; opacity: 0; transform: translateY(18px);
+            transition: max-height 0.6s ease 0.25s, opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+            overflow: hidden; text-align: center;
+        }
+        .unbox.opened .inside { max-height: 400px; opacity: 1; transform: translateY(0); margin-top: 10px; }
+        .unbox .element-badge {
+            display: inline-block; background: #fff; border: 2.5px solid #111; border-radius: 20px;
+            padding: 4px 14px; font-size: 14px; font-weight: 900; box-shadow: 2px 2px 0px #111; margin-bottom: 8px;
+        }
+        .unbox .kind-line { font-size: 14px; font-weight: 700; margin-bottom: 6px; line-height: 1.5; }
+        .unbox .detail { font-size: 12px; color: #555; line-height: 1.6; }
+        .unbox .sorted-tag {
+            display: inline-block; background: #f0f9f4; border: 2px solid #2a9d8f; color: #2a9d8f;
+            border-radius: 12px; padding: 1px 10px; font-size: 10.5px; font-weight: 700; margin-top: 8px;
+        }
+        .unbox .close-hint {
+            font-size: 10.5px; color: #999; font-weight: 700; margin-top: 8px;
+        }
+        .unbox.opened[data-color="blue"]   { background: #eaf6ff; }
+        .unbox.opened[data-color="orange"] { background: #fff3e6; }
+        .unbox.opened[data-color="green"]  { background: #f0f9f4; }
+
+        /* --- 對照帶 --- */
+        .vs-strip { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+        .vs-item {
+            flex: 1 1 30%; min-width: 130px; text-align: center; border: 2px solid #111;
+            border-radius: 10px; padding: 8px 6px; font-size: 12px; background: #fdfbf7;
+            box-shadow: 2px 2px 0px #111; color: #666;
+        }
+        .vs-item b { display: block; font-size: 14px; color: #111; }
+        .vs-item s { color: #aaa; }
+
+        /* --- 猜一猜揭示卡 --- */
+        .guess-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 12px 0; }
+        .guess {
+            border: 2.5px solid #111; border-radius: 12px; background: #9ad5f8;
+            box-shadow: 3px 3px 0px #111; min-height: 78px; display: flex; align-items: center;
+            justify-content: center; text-align: center; padding: 10px 8px; font-weight: 700;
+            font-size: 12.5px; line-height: 1.5; cursor: pointer; transition: 0.25s;
+        }
+        .guess.revealed { background: #fff; animation: bubblePop 0.3s ease; cursor: default; }
+        .guess .q-mark { font-size: 22px; display: block; }
+        .more-list { display: none; margin-top: 12px; }
+        .more-list.show { display: block; animation: fadeIn 0.4s ease; }
+        .more-list ul { margin: 0; padding-left: 20px; font-size: 12.5px; line-height: 1.9; color: #444; }
+
+        /* ★★★ 自我關懷小貼士（照片式排版） ★★★ */
+        .tip-block {
+            border: 2.5px solid #111; border-radius: 14px; padding: 14px 16px; margin-bottom: 14px;
+            background: #fff; box-shadow: 3px 3px 0px #111; font-size: 13px; line-height: 1.75; color: #444;
+        }
+        .tip-block b.tip-title {
+            display: block; font-size: 14.5px; margin-bottom: 6px; color: #111;
+        }
+        .tip-block.gentle-note {
+            background: #fdfbf7; border-style: dashed; box-shadow: none;
+        }
+        .tip-chips {
+            display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; justify-content: flex-start;
+        }
+        .tip-chip {
+            display: inline-block; background: #fff; border: 2px solid #111; border-radius: 20px;
+            padding: 5px 13px; font-size: 12px; font-weight: 700; color: #111;
+            box-shadow: 2px 2px 0px #111; white-space: nowrap;
+        }
+        .tip-closing { font-size: 12.5px; color: #666; margin-top: 8px; font-weight: 700; }
+
+        /* ★★★ 私隱聲明小字 ★★★ */
+        .privacy-note {
+            background: #fdfbf7; border: 2px dashed #ccc; border-radius: 10px;
+            padding: 10px 12px; font-size: 11px; line-height: 1.7; color: #888;
+            margin-bottom: 12px;
+        }
+        .privacy-note b { color: #666; }
+
+        /* ★★★ 頁內溫柔提示（取代 alert） ★★★ */
+        .note-alert {
+            display: none;
+            margin-bottom: 12px;
+            padding: 10px 14px;
+            background: #fff3e6;
+            border: 2px dashed #f4a261;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            animation: bubblePop 0.3s ease;
+        }
+        .note-alert.show { display: block; }
+
+        /* --- 關係整理收據 --- */
+        .receipt-wrap { display: none; justify-content: center; margin-top: 20px; }
+        .receipt-wrap.show { display: flex; animation: fadeIn 0.5s ease; }
+        .receipt {
+            position: relative; background: #fff; width: 100%; max-width: 340px;
+            padding: 20px 18px 26px 18px; border: 2.5px solid #111; box-shadow: 5px 5px 0px #111;
+            font-size: 12px;
+        }
+        .receipt::before, .receipt::after {
+            content: ""; position: absolute; left: 0; right: 0; height: 10px;
+            background: radial-gradient(circle at 5px 5px, transparent 5px, #fff 5px);
+            background-size: 14px 10px;
+        }
+        .receipt::before { top: -8px; transform: rotate(180deg); }
+        .receipt::after { bottom: -8px; }
+        .r-center { text-align: center; }
+        .r-title { font-weight: 900; font-size: 16px; letter-spacing: 2px; }
+        .r-sub { font-family: 'Caveat', cursive; font-size: 13px; color: #888; }
+        .r-meta { font-size: 10px; color: #999; margin-top: 3px; }
+        .r-line { border-top: 2px dashed #111; margin: 10px 0; }
+        .r-item { display: flex; justify-content: space-between; margin: 3px 0; font-size: 11px; color: #444; }
+        .r-quote {
+            background: #fffbe6; border: 2px solid #111; border-radius: 8px; padding: 8px 10px;
+            font-weight: 700; text-align: center; margin: 8px 0; font-size: 12.5px; word-break: break-word; line-height: 1.6;
+        }
+        .r-total { display: flex; justify-content: space-between; font-weight: 900; font-size: 12.5px; margin: 6px 0; }
+        .fragile {
+            display: inline-block; border: 3px double #e63946; color: #e63946; font-weight: 900;
+            padding: 3px 12px; transform: rotate(-5deg); letter-spacing: 1px; margin: 8px auto 4px;
+            border-radius: 4px; background: rgba(255,255,255,0.75); font-size: 11.5px;
+        }
+        .r-gift { display: flex; align-items: center; gap: 6px; margin: 3px 0; font-weight: 700; font-size: 12px; }
+        .barcode {
+            height: 38px; margin: 10px auto 2px; max-width: 200px;
+            background: repeating-linear-gradient(90deg,
+                #111 0 2px, transparent 2px 5px, #111 5px 9px, transparent 9px 11px,
+                #111 11px 12px, transparent 12px 16px, #111 16px 19px, transparent 19px 21px);
+        }
+        .r-foot { font-size: 9.5px; color: #999; text-align: center; margin-top: 5px; line-height: 1.6; }
+        .save-hint {
+            display: none; text-align: center; margin-top: 14px; font-size: 12.5px; background: #eaf6ff;
+            border: 2px dashed #111; border-radius: 10px; padding: 10px 12px; font-weight: 700;
+        }
+        .save-hint.show { display: block; animation: fadeIn 0.5s ease; }
+    </style>
+</head>
+<body>
+
+    <!-- ★★★ 語言切換掣 ★★★ -->
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
+
+    <div class="container">
+        
+        <div class="header">
+            <span class="org-badge">The Space for Relationship Loss and Self-integration</span>
+            <h1><span class="zh">關係失去整理所 🩹</span><span class="en">Relationship Loss Sorting Station 🩹</span></h1>
+            <p style="margin-bottom:0;"><span class="zh">帶著傷痕，溫柔整理。</span><span class="en">Carrying our wounds, sorting with tenderness.</span></p>
+        </div>
+
+        <!-- ================= PAGE 1: 覺察區 ================= -->
+        <div id="page1" class="page active">
+            <div class="doodle-card">
+                <span class="zone-tag"><span class="zh">Step 1：覺察區 🧳</span><span class="en">Step 1: Awareness Zone 🧳</span></span>
+                <h2><span class="zh">同一片天空：身心訊號覺察</span><span class="en">Under the Same Sky: Mind-Body Signals</span></h2>
+                <div class="quote-box">
+                    <span class="zh">「明明只是分開了，為何個心會翳悶，甚至頭昏腦脹……是我的身體出了問題嗎？」</span>
+                    <span class="en">"It was just a separation—why does my chest feel tight, my head foggy… Is something wrong with my body?"</span>
+                </div>
+
+                <div id="skyPick">
+                    <div id="cloudSentinel" style="height:1px;"></div>
+                    <div class="cloud-stage" id="cloudStage">
+                        <svg id="cloudSvg" viewBox="-100 -110 840 760" aria-label="雲朵">
+                            <g id="weatherBack"></g>
+                            <g fill="#AEDCF6">
+                                <circle cx="165" cy="205" r="112"/><circle cx="320" cy="145" r="132"/>
+                                <circle cx="478" cy="205" r="112"/><circle cx="122" cy="318" r="100"/>
+                                <circle cx="320" cy="335" r="150"/><circle cx="518" cy="318" r="100"/>
+                                <circle cx="218" cy="378" r="108"/><circle cx="422" cy="378" r="108"/>
+                            </g>
+                            <circle cx="272" cy="252" r="11" fill="#fff"/>
+                            <circle cx="350" cy="252" r="11" fill="#fff"/>
+                            <g id="mouthFlat"><rect x="278" y="293" width="58" height="11" rx="5.5" fill="#fff"/></g>
+                            <g id="mouthSmile" style="display:none">
+                                <path d="M278 292 Q307 314 336 292" stroke="#fff" stroke-width="11"
+                                      stroke-linecap="round" fill="none"/>
+                            </g>
+                            <circle cx="392" cy="300" r="15" fill="none" stroke="#fff" stroke-width="9"/>
+                            <g id="weatherFront"></g>
+                            <g id="plaster"></g>
+                        </svg>
+                        <span class="sticky-hint"><span class="zh">☁️ 雲朵會陪你捲動</span><span class="en">☁️ The cloud scrolls with you</span></span>
+                    </div>
+
+                    <div class="text-content" style="text-align:center;">
+                        <span class="zh">面對關係中的傷痛，最近你有以下身心反應嗎？（可多選）</span>
+                        <span class="en">Facing relational pain, have you noticed any of these reactions recently? (Select all that apply)</span><br>
+                        <span style="font-size:11.5px; color:#999;">
+                            <span class="zh">每點一項，這朵雲的天氣都會改變 ☁️</span>
+                            <span class="en">Each tap changes the weather on this cloud ☁️</span>
+                        </span>
+                    </div>
+
+                    <div class="tag-category"><span class="zh">⚡ 你最近有經歷過以下【身體】訊號嗎？</span><span class="en">⚡ Any of these BODY signals recently?</span></div>
+                    <div class="tags-grid sky-chips" data-g="body"></div>
+
+                    <div class="tag-category"><span class="zh">💧 【情緒】上呢？</span><span class="en">💧 How about EMOTIONS?</span></div>
+                    <div class="tags-grid sky-chips" data-g="emo"></div>
+
+                    <div class="tag-category"><span class="zh">🌀 【行為】上呢？</span><span class="en">🌀 And BEHAVIOURS?</span></div>
+                    <div class="tags-grid sky-chips" data-g="beh"></div>
+
+                    <div class="feedback-box" id="symptom-feedback">
+                        <span class="zh">點擊上方標籤，看看你的身心正為你承載著什麼？🤍</span>
+                        <span class="en">Tap the tags above and see what your body and mind are carrying for you 🤍</span>
+                    </div>
+
+                    <div style="text-align: center; margin-top:20px;">
+                        <button class="action-btn" id="submitBtn" disabled onclick="submitSky()">
+                            <span class="zh">🩹 為這朵雲，貼上一塊膠布</span><span class="en">🩹 Put a plaster on this cloud</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="skyResult">
+                    <div class="quote-box" style="border-left-color:#2a9d8f;">
+                        <span class="zh">原來，不只你一個。</span><span class="en">See—you are not the only one.</span>
+                    </div>
+
+                    <div class="cloud-stage">
+                        <svg id="cloudSvg2" viewBox="-100 -110 840 760"></svg>
+                    </div>
+
+                    <div class="sky" id="sky"></div>
+                    <div class="sky-count">
+                        <span class="zh">至今，已有 </span><span class="en">So far, </span><b id="totalN">0</b>
+                        <span class="zh"> 朵雲飄過這片天空</span><span class="en"> clouds have drifted across this sky</span>
+                    </div>
+                    <div class="sky-sub"><span class="zh">每朵雲，都帶著自己的天氣。</span><span class="en">Every cloud carries its own weather.</span></div>
+
+                    <div class="others-mini">
+                        <div class="line"><span class="zh">🤍 你選的反應，也有其他朋友經歷過：</span><span class="en">🤍 Others have experienced what you selected too:</span></div>
+                        <div class="tags" id="miniTags"></div>
+                    </div>
+
+                    <div class="feedback-box" style="background:#f0f9f4; border-color:#2a9d8f; margin-top:12px;">
+                        <span class="zh">這些「不尋常」的身心反應，其實是面對不尋常壓力時的<b>「正常」反應</b>。<br>風會靜，雨會停，而雲，依然輕輕地飄。</span>
+                        <span class="en">These "unusual" mind-body reactions are in fact <b>normal</b> responses to unusual stress.<br>Wind settles, rain stops—and the cloud keeps floating gently.</span>
+                    </div>
+
+                    <div style="text-align: center; margin-top:20px;">
+                        <button class="action-btn" onclick="switchPage('page2')">
+                            <span class="zh">覺察了，前往整理區慢慢梳理 ➡️</span><span class="en">Noticed. Now let's sort things gently ➡️</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 2: 整理區 ================= -->
+        <div id="page2" class="page">
+            
+            <!-- Step 2-A -->
+            <div class="doodle-card">
+                <span class="zone-tag"><span class="zh">Step 2-A：非線性軌跡 🌊</span><span class="en">Step 2-A: A Non-linear Path 🌊</span></span>
+                <h2><span class="zh">非線性的哀傷歷程</span><span class="en">Grief Is Not a Straight Line</span></h2>
+                <div class="quote-box">
+                    <span class="zh">「明明昨天好像好轉了，為什麼今天又突然崩潰？我是否退步了？」</span>
+                    <span class="en">"I seemed better yesterday—why am I falling apart again today? Am I going backwards?"</span>
+                </div>
+                
+                <div class="source-cite"><span class="zh">Source: Kübler-Ross 哀傷五階段模型</span><span class="en">Source: Kübler-Ross Five Stages of Grief</span></div>
+                <div class="text-content">
+                    <span class="zh">哀傷從來不是直線前進的。你可能會在以下五個階段來回穿梭。<b>先看看示範</b>——</span>
+                    <span class="en">Grief never moves in a straight line. You may travel back and forth among these five stages. <b>Watch the demo first</b>—</span>
+                </div>
+
+                <div class="svg-stage" style="height: 220px;">
+                    <svg class="stage-svg" viewBox="0 0 450 220">
+                        <path id="idealPath" d="M 40,160 C 150,150 260,125 410,60"
+                              fill="none" stroke="#457b9d" stroke-width="3"
+                              stroke-linecap="round" opacity="0.85"/>
+                        <text class="zh" x="170" y="118" font-size="10.5" font-weight="bold" fill="#457b9d" opacity="0.9">我們想像中的復原</text>
+                        <text class="en" x="150" y="118" font-size="9.5" font-weight="bold" fill="#457b9d" opacity="0.9">The recovery we imagine</text>
+
+                        <path id="curvyPath"
+                              d="M 40,160
+                                 C 65,100 95,60 125,85
+                                 C 150,105 155,150 195,160
+                                 C 225,168 225,120 195,118
+                                 C 165,116 175,170 215,172
+                                 C 255,175 285,160 305,125
+                                 C 318,100 342,78 338,102
+                                 C 335,120 355,122 365,100
+                                 C 375,80 395,68 410,60"
+                              fill="none" stroke="none"/>
+
+                        <path id="trailPath"
+                              d="M 40,160
+                                 C 65,100 95,60 125,85
+                                 C 150,105 155,150 195,160
+                                 C 225,168 225,120 195,118
+                                 C 165,116 175,170 215,172
+                                 C 255,175 285,160 305,125
+                                 C 318,100 342,78 338,102
+                                 C 335,120 355,122 365,100
+                                 C 375,80 395,68 410,60"
+                              fill="none" stroke="#f4a261" stroke-width="4" stroke-linecap="round" opacity="0.95"/>
+
+                        <text class="zh" x="18" y="184" font-size="16" font-weight="900" fill="#555">否認</text>
+                        <text class="zh" x="92" y="60" font-size="16" font-weight="900" fill="#555">憤怒</text>
+                        <text class="zh" x="158" y="202" font-size="16" font-weight="900" fill="#555">討價還價</text>
+                        <text class="zh" x="272" y="194" font-size="16" font-weight="900" fill="#555">沮喪</text>
+                        <text class="zh" x="392" y="40" font-size="16" font-weight="900" fill="#2a9d8f">接受</text>
+
+                        <text class="en" x="12" y="184" font-size="12" font-weight="900" fill="#555">Denial</text>
+                        <text class="en" x="95" y="60" font-size="12" font-weight="900" fill="#555">Anger</text>
+                        <text class="en" x="152" y="202" font-size="12" font-weight="900" fill="#555">Bargaining</text>
+                        <text class="en" x="258" y="194" font-size="12" font-weight="900" fill="#555">Depression</text>
+                        <text class="en" x="368" y="40" font-size="12" font-weight="900" fill="#2a9d8f">Acceptance</text>
+
+                        <g id="cloudGroupCurvy" transform="translate(40, 160)">
+                            <image href="Cloud.PNG" x="-50" y="-40" width="100" height="80" />
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="path-legend">
+                    <span class="leg"><i class="legend-swatch swatch-blue"></i><span class="zh">我們想像中的復原</span><span class="en">Imagined recovery</span></span>
+                    <span class="leg"><i class="legend-question">?</i><span class="zh">你的路線（獨特・無法預測）</span><span class="en">Your route (unique &amp; unpredictable)</span></span>
+                    <span class="leg"><i class="legend-swatch swatch-orange"></i><span class="zh">真實復原歷程</span><span class="en">Real recovery journey</span></span>
+                </div>
+
+                <div style="text-align: center;">
+                    <button class="action-btn" style="padding: 6px 12px; font-size:12px;" onclick="walkTangledPath()">
+                        <span class="zh">一起走一趟復原路。 🚶‍♂️</span><span class="en">Walk the recovery road together 🚶‍♂️</span>
+                    </button>
+                </div>
+
+                <div class="trigger-bubble" id="trigger-bubble"></div>
+
+                <div class="feedback-box" id="curvy-feedback" style="display:none; background:#f0f9f4; border-color: #2a9d8f; margin-top: 15px;">
+                    <span class="zh">🌱 帶著這段經歷，你正在慢慢重新建立屬於自己的生活節奏。</span>
+                    <span class="en">🌱 Carrying this experience, you are slowly rebuilding your own rhythm of life.</span>
+                </div>
+
+                <div class="tag-category" style="margin-top:18px;">
+                    <span class="zh">📍 沉澱一下，在圖中標記：今日的你，大約在哪個位置？</span>
+                    <span class="en">📍 Pause and mark: where are you today on this map?</span>
+                </div>
+                <div class="tags-grid" id="stagePick">
+                    <button class="tag-btn" data-zh="否認" data-en="Denial" onclick="pickStage(this)"><span class="zh">否認</span><span class="en">Denial</span></button>
+                    <button class="tag-btn" data-zh="憤怒" data-en="Anger" onclick="pickStage(this)"><span class="zh">憤怒</span><span class="en">Anger</span></button>
+                    <button class="tag-btn" data-zh="討價還價" data-en="Bargaining" onclick="pickStage(this)"><span class="zh">討價還價</span><span class="en">Bargaining</span></button>
+                    <button class="tag-btn" data-zh="沮喪" data-en="Depression" onclick="pickStage(this)"><span class="zh">沮喪</span><span class="en">Depression</span></button>
+                    <button class="tag-btn" data-zh="接受" data-en="Acceptance" onclick="pickStage(this)"><span class="zh">接受</span><span class="en">Acceptance</span></button>
+                    <button class="tag-btn" data-zh="🔄 在幾個階段之間穿梭" data-en="🔄 Moving between stages" onclick="pickStage(this)"><span class="zh">🔄 在幾個階段之間穿梭</span><span class="en">🔄 Moving between stages</span></button>
+                </div>
+                <div class="feedback-box" id="stage-feedback">
+                    <span class="zh">無論標記在哪裡，都沒有「應該」的位置——來回，也是前行的一部分。🤍</span>
+                    <span class="en">Wherever you mark, there is no "should"—going back and forth is part of moving forward. 🤍</span>
+                </div>
+            </div>
+
+            <!-- Step 2-B -->
+            <div class="doodle-card">
+                <span class="zone-tag"><span class="zh">Step 2-B：雙軌平衡室 🕰️</span><span class="en">Step 2-B: Dual Process Room 🕰️</span></span>
+                <h2><span class="zh">失落與復原雙軌擺盪模式</span><span class="en">The Dual Process Model of Coping</span></h2>
+                <div class="quote-box">
+                    <span class="zh">「理智上知道要向前看，但感性上卻不斷被回憶拉扯……」</span>
+                    <span class="en">"My head says move on, but my heart keeps being pulled back by memories…"</span>
+                </div>
+                <div class="source-cite"><span class="zh">Source: Stroebe &amp; Schut (1999) 雙軌擺盪模式</span><span class="en">Source: Stroebe &amp; Schut (1999) Dual Process Model</span></div>
+                <div class="text-content">
+                    <span class="zh">健康的復原不是一味堅強，而是在「失落」與「復原」兩端來回擺盪：</span>
+                    <span class="en">Healthy recovery is not about staying strong all the time—it oscillates between two orientations:</span>
+                    <ul style="margin-top: 8px; margin-bottom: 12px; padding-left: 20px; line-height: 1.7;">
+                        <li>
+                            <span class="zh"><b>🌧️ 失落取向 (Loss)：</b> 允許哭泣、思念、情緒低落。</span>
+                            <span class="en"><b>🌧️ Loss-oriented:</b> allowing tears, longing and low moods.</span>
+                        </li>
+                        <li>
+                            <span class="zh"><b>🌱 復原取向 (Restoration)：</b> 逐步適應新角色、建立日常、嘗試新活動。</span>
+                            <span class="en"><b>🌱 Restoration-oriented:</b> adapting to new roles, building routines, trying new activities.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="svg-stage" id="swipe-stage" style="height: 180px; cursor: grab;">
+                    <svg class="stage-svg" viewBox="0 0 400 150">
+                        <rect x="0" y="0" width="200" height="150" fill="#fcf3f3" opacity="0.6"/>
+                        <rect x="200" y="0" width="200" height="150" fill="#f0f9f4" opacity="0.6"/>
+                        
+                        <text class="zh" x="40" y="30" font-size="14" font-weight="bold" fill="#e63946" opacity="0.7">🌧️ 失落取向</text>
+                        <text class="zh" x="300" y="30" font-size="14" font-weight="bold" fill="#2a9d8f" opacity="0.7">🌱 復原取向</text>
+                        <text class="en" x="30" y="30" font-size="12" font-weight="bold" fill="#e63946" opacity="0.7">🌧️ Loss-oriented</text>
+                        <text class="en" x="270" y="30" font-size="12" font-weight="bold" fill="#2a9d8f" opacity="0.7">🌱 Restoration</text>
+
+                        <circle cx="200" cy="10" r="5" fill="#111" />
+                        <path d="M 180 10 L 220 10" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+                        <g id="pendulumGroup" style="transform-origin: 200px 10px; transform: rotate(0deg);">
+                            <line x1="200" y1="10" x2="200" y2="80" stroke="#111" stroke-width="2.5" stroke-dasharray="4 3" />
+                            <g transform="translate(200, 100)">
+                                <image href="Cloud.PNG" x="-90" y="-75" width="180" height="150" />
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="feedback-box" id="pendulum-feedback" style="background:#fff; border-color: #ccc;">
+                    <span class="zh">👋 觀看雙軌來回擺盪的過程。</span>
+                    <span class="en">👋 Watch the pendulum swing between the two.</span>
+                </div>
+
+                <div style="text-align: center; margin-top: 15px;">
+                    <button class="action-btn" style="padding: 8px 16px; font-size: 13px;" onclick="startLifeSequence()">
+                        <span class="zh">經歷來回擺盪的歷程 🧭</span><span class="en">Experience the oscillation 🧭</span>
+                    </button>
+                </div>
+
+                <div class="tag-category" style="margin-top:18px;">
+                    <span class="zh">🧭 對照兩張圖，你覺得此刻的自己較接近哪裡？（四選一）</span>
+                    <span class="en">🧭 Comparing the two sides, where are you right now? (Pick one)</span>
+                </div>
+                <div class="tags-grid" id="swingPick">
+                    <button class="tag-btn" data-zh="🌧️ 較接近失落取向" data-en="🌧️ Closer to loss-oriented" onclick="pickSwing(this)"><span class="zh">🌧️ 較接近失落取向</span><span class="en">🌧️ Closer to loss-oriented</span></button>
+                    <button class="tag-btn" data-zh="🔄 兩邊來回擺盪中" data-en="🔄 Swinging between both" onclick="pickSwing(this)"><span class="zh">🔄 兩邊來回擺盪中</span><span class="en">🔄 Swinging between both</span></button>
+                    <button class="tag-btn" data-zh="🌱 較接近復原取向" data-en="🌱 Closer to restoration-oriented" onclick="pickSwing(this)"><span class="zh">🌱 較接近復原取向</span><span class="en">🌱 Closer to restoration-oriented</span></button>
+                    <button class="tag-btn" data-zh="🤷 說不清" data-en="🤷 Hard to say" onclick="pickSwing(this)"><span class="zh">🤷 說不清</span><span class="en">🤷 Hard to say</span></button>
+                </div>
+                <div class="feedback-box" id="swing-feedback">
+                    <span class="zh">無論在哪一端，都是歷程的一部分，沒有對錯。🤍</span>
+                    <span class="en">Wherever you are, it's part of the process—no right or wrong. 🤍</span>
+                </div>
+            </div>
+
+            <!-- Step 2-C -->
+            <div class="doodle-card">
+                <span class="zone-tag"><span class="zh">Step 2-C：大腦解密 🧠</span><span class="en">Step 2-C: Brain Decoded 🧠</span></span>
+                <h2><span class="zh">心痛是真的，重塑也是真的</span><span class="en">Heartache Is Real—So Is Rewiring</span></h2>
+                <div class="source-cite">Source: Ethan Kross (2011) / Neural Plasticity</div>
+                <div class="text-content">
+                    <span class="zh">fMRI 掃描證實，經歷分離時，大腦負責<b>「生理疼痛」</b>的區域與<b>「杏仁核警報系統」</b>真的會被高度激活！你的痛不是錯覺。<br><br>但大腦擁有<b>「神經可塑性」</b>。拖動下方滑塊，看看當你「給予自己關懷」時，大腦會發生什麼變化？</span>
+                    <span class="en">fMRI studies show that during separation, the brain regions for <b>physical pain</b> and the <b>amygdala alarm system</b> really do light up! Your pain is not an illusion.<br><br>But the brain has <b>neuroplasticity</b>. Drag the slider below and see what happens when you offer yourself compassion.</span>
+                </div>
+
+                <div class="svg-stage" style="height: 190px; background: #222; border-color: #444;">
+                    <svg viewBox="0 0 400 180">
+                        <path d="M120,100 C120,40 160,20 200,20 C240,20 280,40 280,100 C280,150 240,170 200,170 C160,170 120,150 120,100 Z" fill="none" stroke="#666" stroke-width="4" stroke-dasharray="8 6"/>
+                        
+                        <g id="pain-net">
+                            <circle cx="170" cy="80" r="14" fill="#e63946">
+                                <animate attributeName="r" values="12;16;12" dur="0.8s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="230" cy="110" r="18" fill="#e63946">
+                                <animate attributeName="r" values="15;19;15" dur="1s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="180" cy="130" r="10" fill="#e63946" />
+                            <path d="M170,80 L230,110 L180,130 Z" fill="none" stroke="#e63946" stroke-width="5" opacity="0.8"/>
+                        </g>
+
+                        <g id="heal-net" opacity="0">
+                            <circle cx="150" cy="120" r="12" fill="#2a9d8f" />
+                            <circle cx="210" cy="60" r="16" fill="#2a9d8f">
+                                <animate attributeName="r" values="14;17;14" dur="2s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="250" cy="90" r="12" fill="#2a9d8f" />
+                            <circle cx="240" cy="140" r="9" fill="#2a9d8f" />
+                            <path d="M150,120 Q 180,80 210,60 T 250,90 T 240,140" fill="none" stroke="#2a9d8f" stroke-width="3" stroke-linecap="round"/>
+                            <text x="205" y="55" font-size="12">✨</text>
+                            <text x="140" y="115" font-size="10">🌱</text>
+                        </g>
+                    </svg>
+                </div>
+                
+                <input type="range" id="brainSlider" class="custom-slider" min="0" max="100" value="0" oninput="updateBrainState(this.value)">
+                
+                <div class="feedback-box" id="brain-feedback" style="background: #ffebe6; border-color: #e63946;">
+                    <span class="zh">🚨 <b>警報期：</b>負責恐懼與警報的杏仁核過度活躍，大腦感受到如同肉體受傷般的實體痛楚，處於「戰或逃」狀態。</span>
+                    <span class="en">🚨 <b>Alarm:</b> the amygdala is hyperactive; the brain feels real, bodily pain—in "fight or flight" mode.</span>
+                </div>
+            </div>
+
+            <!-- Step 2-D -->
+            <div class="doodle-card">
+                <span class="zone-tag"><span class="zh">Step 2-D：重新築路 🛤️</span><span class="en">Step 2-D: Paving New Paths 🛤️</span></span>
+                <h2><span class="zh">為大腦開闢新路徑</span><span class="en">Carve a New Neural Pathway</span></h2>
+                <div class="text-content">
+                    <span class="zh">大腦神經迴路就像被走過無數次的小路。舊的痛苦習慣了被點亮，但你可以選擇開拓新路。<br>👇 <b>請用手指在畫布上滑動畫出一條新的神經迴路。</b></span>
+                    <span class="en">Neural circuits are like well-trodden trails. Old pain lights up out of habit—but you can open a new path.<br>👇 <b>Slide your finger on the canvas to draw a new neural circuit.</b></span>
+                </div>
+
+                <div class="svg-stage" id="draw-stage" style="height: 160px; touch-action: none; background: #fdfbf7;">
+                    <svg viewBox="0 0 400 160" id="draw-svg">
+                        <path d="M 40,80 L 120,40 L 200,120 L 280,50 L 360,90" fill="none" stroke="#e63946" stroke-width="8" stroke-dasharray="10 8" opacity="0.3"/>
+                        <text class="zh" x="35" y="70" font-size="12" fill="#e63946" font-weight="bold">舊有神經迴路 ⛈️</text>
+                        <text class="en" x="35" y="70" font-size="10" fill="#e63946" font-weight="bold">Old neural circuit ⛈️</text>
+                        <path id="user-path" d="" fill="none" stroke="#2a9d8f" stroke-width="6" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="feedback-box" id="draw-feedback">
+                    <span class="zh">等待你開展新的生活及互動經驗... 🖌️</span>
+                    <span class="en">Waiting for you to begin new experiences… 🖌️</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= PAGE 3: 安放區 ================= -->
+        <div id="page3" class="page">
+
+            <!-- Step 3-A -->
+            <div class="doodle-card">
+                <span class="zone-tag"><span class="zh">Step 3-A：自我關懷 🫶</span><span class="en">Step 3-A: Self-Compassion 🫶</span></span>
+                <h2><span class="zh">拆箱大掃除：翻轉內在聲音</span><span class="en">Unboxing: Turning the Inner Voice Around</span></h2>
+                <div class="quote-box">
+                    <span class="zh">「是不是我做錯了甚麼？為甚麼是我？」</span>
+                    <span class="en">"Did I do something wrong? Why me?"</span>
+                </div>
+                <div class="source-cite"><span class="zh">Source: Kristin Neff (2003) 自我關懷理論</span><span class="en">Source: Kristin Neff (2003) Self-Compassion Theory</span></div>
+                <div class="text-content">
+                    <span class="zh">面對關係分離與失去，大腦容易陷入自責或自憐。<br><br>心理學家克莉絲汀‧內夫提出<b>「自我關懷」</b>概念：<br>面對挫折、失敗或痛苦時，像對待好朋友般<b>善待、接納自己</b>，而非嚴厲批判。<br><br>👇 這三個紙箱收藏了我們可能對自己說的話。<b>點擊拆箱</b>，看看整理過後會變成甚麼——（再點一下可重新封箱，隨時重溫）</span>
+                    <span class="en">Facing separation and loss, our mind easily slips into self-blame or self-pity.<br><br>Psychologist Kristin Neff proposed <b>self-compassion</b>: when we suffer, fail or feel inadequate, we treat ourselves with <b>kindness and acceptance—like a good friend would</b>—rather than harsh criticism.<br><br>👇 These three boxes hold things we may say to ourselves. <b>Tap to unbox</b> and see what they become after sorting—(tap again to re-seal and revisit anytime)</span>
+                </div>
+
+                <div class="unbox-grid">
+                    <!-- 箱 1 -->
+                    <div class="unbox" data-color="blue" onclick="toggleBox(this)">
+                        <div class="flap flap-l"></div><div class="flap flap-r"></div>
+                        <div class="tape"><span class="zh">📦 未整理・易碎品</span><span class="en">📦 Unsorted · Fragile</span></div>
+                        <span class="crit"><span class="zh">「我很沒用」</span><span class="en">"I'm useless."</span></span>
+                        <div class="tap-hint"><span class="zh">👆 點擊拆箱</span><span class="en">👆 Tap to unbox</span></div>
+                        <div class="inside">
+                            <span class="element-badge"><span class="zh">🫶 善待自己</span><span class="en">🫶 Self-Kindness</span></span>
+                            <div class="kind-line"><span class="zh">「我現在很辛苦，我值得溫柔。」</span><span class="en">"I'm having a hard time—I deserve tenderness."</span></div>
+                            <div class="detail">
+                                <span class="zh">當遭受痛苦、失敗或感到不足時，像好友般給予自己溫暖與支持，而非冷漠、苛責。這份內在支持讓我們感到安全，更有心力面對挑戰、作出生活中必要的改變。</span>
+                                <span class="en">When we suffer, fail or feel inadequate, we offer ourselves warmth and support like a good friend—rather than coldness and criticism. This inner support helps us feel safe, with more strength to face challenges and make necessary changes in life.</span>
+                            </div>
+                            <br><span class="sorted-tag"><span class="zh">已整理 ✔</span><span class="en">Sorted ✔</span></span>
+                            <div class="close-hint"><span class="zh">🔁 再點一下可重新封箱</span><span class="en">🔁 Tap again to re-seal</span></div>
+                        </div>
+                    </div>
+                    <!-- 箱 2 -->
+                    <div class="unbox" data-color="orange" onclick="toggleBox(this)">
+                        <div class="flap flap-l"></div><div class="flap flap-r"></div>
+                        <div class="tape"><span class="zh">📦 未整理・易碎品</span><span class="en">📦 Unsorted · Fragile</span></div>
+                        <span class="crit"><span class="zh">「只有我一個這麼慘」</span><span class="en">"I'm the only one suffering like this."</span></span>
+                        <div class="tap-hint"><span class="zh">👆 點擊拆箱</span><span class="en">👆 Tap to unbox</span></div>
+                        <div class="inside">
+                            <span class="element-badge"><span class="zh">🌍 共通人性</span><span class="en">🌍 Common Humanity</span></span>
+                            <div class="kind-line"><span class="zh">「受苦是人類的共同經驗。」</span><span class="en">"Suffering is part of the shared human experience."</span></div>
+                            <div class="detail">
+                                <span class="zh">遭遇困境時，我們常有一種非理性的孤獨感——彷彿「我」是世上唯一承受這種痛苦的人。但「人」的定義本身就意味著脆弱、有缺陷和不完美。當我們自我關懷，會發現苦難將我們與他人連結起來，而不是隔離。</span>
+                                <span class="en">In hardship we often feel an irrational loneliness—as if "I" were the only one bearing this pain. Yet being human itself means being vulnerable, flawed and imperfect. With self-compassion, we discover that suffering connects us with others rather than isolating us.</span>
+                            </div>
+                            <br><span class="sorted-tag"><span class="zh">已整理 ✔</span><span class="en">Sorted ✔</span></span>
+                            <div class="close-hint"><span class="zh">🔁 再點一下可重新封箱</span><span class="en">🔁 Tap again to re-seal</span></div>
+                        </div>
+                    </div>
+                    <!-- 箱 3 -->
+                    <div class="unbox" data-color="green" onclick="toggleBox(this)">
+                        <div class="flap flap-l"></div><div class="flap flap-r"></div>
+                        <div class="tape"><span class="zh">📦 未整理・易碎品</span><span class="en">📦 Unsorted · Fragile</span></div>
+                        <span class="crit"><span class="zh">「我撐不下去了」</span><span class="en">"I can't hold on any more."</span></span>
+                        <div class="tap-hint"><span class="zh">👆 點擊拆箱</span><span class="en">👆 Tap to unbox</span></div>
+                        <div class="inside">
+                            <span class="element-badge"><span class="zh">🧘 靜觀</span><span class="en">🧘 Mindfulness</span></span>
+                            <div class="kind-line"><span class="zh">「我留意到這份痛，但我不等於這份痛。」</span><span class="en">"I notice this pain, but I am not this pain."</span></div>
+                            <div class="detail">
+                                <span class="zh">以平衡、靜觀的方式面對痛苦——既不壓抑也不誇大它。放開慣常的視角，以更全面的角度看待自身處境，防止「過度認同」於痛苦的想法和感受，避免被負面情緒吞噬。</span>
+                                <span class="en">Face pain in a balanced, mindful way—neither suppressing nor exaggerating it. Step back for a broader view of your situation, preventing "over-identification" with painful thoughts and feelings, so you are not swallowed by them.</span>
+                            </div>
+                            <br><span class="sorted-tag"><span class="zh">已整理 ✔</span><span class="en">Sorted ✔</span></span>
+                            <div class="close-hint"><span class="zh">🔁 再點一下可重新封箱</span><span class="en">🔁 Tap again to re-seal</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vs-strip">
+                    <div class="vs-item"><span class="zh"><b>善待自己</b> vs <s>自我批判</s></span><span class="en"><b>Self-Kindness</b> vs <s>Self-Judgement</s></span></div>
+                    <div class="vs-item"><span class="zh"><b>共通人性</b> vs <s>孤立</s></span><span class="en"><b>Common Humanity</b> vs <s>Isolation</s></span></div>
+                    <div class="vs-item"><span class="zh"><b>靜觀</b> vs <s>過度認同</s></span><span class="en"><b>Mindfulness</b> vs <s>Over-identification</s></span></div>
+                </div>
+
+                <div class="feedback-box" id="unbox-feedback">
+                    <span class="zh">自我關懷包含三大核心元素，逐一拆箱看看吧 📦</span>
+                    <span class="en">Self-compassion has three core elements—unbox them one by one 📦</span>
+                </div>
+            </div>
+
+            <!-- Step 3-B -->
+            <div class="doodle-card">
+                <span class="zone-tag"><span class="zh">Step 3-B：猜一猜 🔮</span><span class="en">Step 3-B: Take a Guess 🔮</span></span>
+                <h2><span class="zh">自我關懷會帶來甚麼改變？</span><span class="en">What Changes Can Self-Compassion Bring?</span></h2>
+                <div class="text-content">
+                    <span class="zh">研究發現，具有自我關懷態度的人更可能……<b>點擊卡片揭曉答案！</b></span>
+                    <span class="en">Research finds that self-compassionate people are more likely to… <b>Tap a card to reveal!</b></span>
+                </div>
+                <div class="guess-grid">
+                    <div class="guess" onclick="revealCard(this)" data-zh="🤝 寬容和體諒他人" data-en="🤝 Be forgiving and understanding towards others"><span><span class="q-mark">？</span><span class="zh">猜一猜</span><span class="en">Guess</span></span></div>
+                    <div class="guess" onclick="revealCard(this)" data-zh="💪 認真負責，勇於承擔個人責任" data-en="💪 Take personal responsibility conscientiously"><span><span class="q-mark">？</span><span class="zh">猜一猜</span><span class="en">Guess</span></span></div>
+                    <div class="guess" onclick="revealCard(this)" data-zh="🙅 設定健康的界限，學會說「不」" data-en="🙅 Set healthy boundaries and learn to say 'no'"><span><span class="q-mark">？</span><span class="zh">猜一猜</span><span class="en">Guess</span></span></div>
+                    <div class="guess" onclick="revealCard(this)" data-zh="❤️ 在關係中感受真實與連結，體驗親密感" data-en="❤️ Feel authentic and connected in relationships, experiencing intimacy"><span><span class="q-mark">？</span><span class="zh">猜一猜</span><span class="en">Guess</span></span></div>
+                    <div class="guess" onclick="revealCard(this)" data-zh="🕊️ 在衝突局勢中尋求妥協方案" data-en="🕊️ Seek compromise in conflict situations"><span><span class="q-mark">？</span><span class="zh">猜一猜</span><span class="en">Guess</span></span></div>
+                    <div class="guess" onclick="revealCard(this)" data-zh="😊 感到快樂、樂觀，並對自己的生活感到滿意" data-en="😊 Feel happy, optimistic and satisfied with life"><span><span class="q-mark">？</span><span class="zh">猜一猜</span><span class="en">Guess</span></span></div>
+                </div>
+                <div style="text-align:center;">
+                    <button class="action-btn" style="padding: 8px 16px; font-size: 13px;" onclick="toggleMoreList()">
+                        <span class="zh">➕ 還有更多改變……</span><span class="en">➕ And even more…</span>
+                    </button>
+                </div>
+                <div class="more-list" id="more-list">
+                    <div class="feedback-box" style="text-align:left; margin-top:12px;">
+                        <ul>
+                            <li><span class="zh">自我關懷能降低大腦的警報，分泌催產素與安多酚，激活副交感神經系統，讓身體更快從壓力狀態恢復平靜。</span><span class="en">Self-compassion calms the brain's alarm, releases oxytocin and endorphins, and activates the parasympathetic system—helping the body settle from stress faster.</span></li>
+                            <li><span class="zh">🪨 擁有穩定且無條件的自我價值感</span><span class="en">🪨 Stable, unconditional self-worth</span></li>
+                            <li><span class="zh">🪞 欣賞並滿足於自己的身體</span><span class="en">🪞 Appreciate and feel at ease with one's body</span></li>
+                            <li><span class="zh">🧠 展現更高的情緒智商</span><span class="en">🧠 Higher emotional intelligence</span></li>
+                            <li><span class="zh">🌊 面對困境堅強有韌性</span><span class="en">🌊 Resilience in adversity</span></li>
+                            <li><span class="zh">🎯 以堅韌的毅力、積極性和決心，實現重要目標</span><span class="en">🎯 Pursue important goals with grit, motivation and determination</span></li>
+                            <li><span class="zh">📚 專注於學習和個人成長</span><span class="en">📚 Focus on learning and personal growth</span></li>
+                            <li><span class="zh">💼 應對工作挑戰，感到更勝任、更有效率</span><span class="en">💼 Feel more competent and effective facing work challenges</span></li>
+                            <li><span class="zh">⚖️ 保持健康的工作與生活平衡</span><span class="en">⚖️ Keep a healthy work-life balance</span></li>
+                            <li><span class="zh">🥗 吃營養豐富的食物、恆常運動、定期體檢</span><span class="en">🥗 Eat well, exercise regularly, attend check-ups</span></li>
+                            <li><span class="zh">😴 睡個好覺，擁有強壯的免疫系統</span><span class="en">😴 Sleep well with a stronger immune system</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3-C -->
+            <div class="doodle-card">
+                <span class="zone-tag"><span class="zh">Step 3-C：小貼士 🌱</span><span class="en">Step 3-C: Tips 🌱</span></span>
+                <h2><span class="zh">如何培養自我關懷態度？</span><span class="en">How to Cultivate Self-Compassion?</span></h2>
+
+                <div class="quote-box">
+                    <span class="zh">「自我關懷是一種善意的修行，而非愉悅的享受或躺平。允許自己慢慢學習，將它變成新的習慣。」</span>
+                    <span class="en">"Self-compassion is a practice of goodwill, not indulgence or lying flat. Allow yourself to learn slowly and make it a new habit."</span>
+                </div>
+
+                <div class="tip-block">
+                    <b class="tip-title"><span class="zh">🍵 非正式練習（隨時隨地）</span><span class="en">🍵 Informal practice (anytime, anywhere)</span></b>
+                    <span class="zh">自我關懷休息・透過寫作探索自我關懷・支持性觸摸（例如：把一隻手輕放在心口上）</span>
+                    <span class="en">Self-compassion break · Exploring self-compassion through writing · Supportive touch (e.g. placing a hand gently on your heart)</span>
+                </div>
+
+                <div class="tip-block">
+                    <b class="tip-title"><span class="zh">🧘 正式練習（定時進行）</span><span class="en">🧘 Formal practice (scheduled)</span></b>
+                    <span class="zh">慈愛呼吸法——每天數分鐘，隨著呼吸把善意帶給自己。</span>
+                    <span class="en">Affectionate breathing—spend a few minutes daily, bringing kindness to yourself with each breath.</span>
+                </div>
+
+                <div class="tip-block gentle-note">
+                    <b class="tip-title"><span class="zh">🕯️ 溫柔提示：「回燃」現象</span><span class="en">🕯️ Gentle note: "backdraft"</span></b>
+                    <span class="zh">有些人練習自我關懷時，起初痛苦反而會加劇——敞開心扉讓愛湧入時，舊傷也隨之流出。這是正常的過程。如果感到被負面情緒淹沒，請容許自己暫時抽身：</span>
+                    <span class="en">For some, self-compassion practice intensifies pain at first—when the heart opens to let love in, old hurts flow out too. This is a normal process. If you feel overwhelmed, allow yourself to step back for a while:</span>
+                    <div class="tip-chips">
+                        <span class="tip-chip"><span class="zh">🌬️ 專注呼吸</span><span class="en">🌬️ Focus on breathing</span></span>
+                        <span class="tip-chip"><span class="zh">🦶 感受雙腳與地面接觸</span><span class="en">🦶 Feel your feet on the ground</span></span>
+                        <span class="tip-chip"><span class="zh">🍵 喝杯茶</span><span class="en">🍵 Have a cup of tea</span></span>
+                        <span class="tip-chip"><span class="zh">🐈 撫摸貓咪</span><span class="en">🐈 Stroke a cat</span></span>
+                    </div>
+                    <div class="tip-closing">
+                        <span class="zh">這種照顧自己當下需要的態度，本身已經是自我關懷。🤍</span>
+                        <span class="en">Caring for what you need right now is itself self-compassion. 🤍</span>
+                    </div>
+                </div>
+
+                <div style="text-align:center; margin: 14px 0;">
+                    <a href="https://self-compassion.org/self-compassion-practices/" target="_blank" style="text-decoration:none;">
+                        <button class="action-btn" style="background:#fffbe6; width:100%; max-width:320px;">
+                            <span class="zh">🔗 探索更多自我關懷練習（Dr. Kristin Neff）</span>
+                            <span class="en">🔗 Explore more practices (Dr. Kristin Neff)</span>
+                        </button>
+                    </a>
+                </div>
+
+                <div class="tag-category">
+                    <span class="zh">🌱 未來你想試試哪些自我關懷練習？（可多選）</span>
+                    <span class="en">🌱 Which practices would you like to try? (Select all that apply)</span>
+                </div>
+                <div class="tags-grid" id="futurePick">
+                    <button class="tag-btn" data-zh="自我關懷休息" data-en="Self-compassion break" onclick="pickFuture(this)"><span class="zh">自我關懷休息</span><span class="en">Self-compassion break</span></button>
+                    <button class="tag-btn" data-zh="書寫探索" data-en="Writing" onclick="pickFuture(this)"><span class="zh">書寫探索</span><span class="en">Writing</span></button>
+                    <button class="tag-btn" data-zh="支持性觸摸" data-en="Supportive touch" onclick="pickFuture(this)"><span class="zh">支持性觸摸</span><span class="en">Supportive touch</span></button>
+                    <button class="tag-btn" data-zh="慈愛呼吸法" data-en="Affectionate breathing" onclick="pickFuture(this)"><span class="zh">慈愛呼吸法</span><span class="en">Affectionate breathing</span></button>
+                    <button class="tag-btn" data-zh="專注呼吸" data-en="Focused breathing" onclick="pickFuture(this)"><span class="zh">專注呼吸</span><span class="en">Focused breathing</span></button>
+                    <button class="tag-btn" data-zh="感受雙腳踏地" data-en="Feet on the ground" onclick="pickFuture(this)"><span class="zh">感受雙腳踏地</span><span class="en">Feet on the ground</span></button>
+                    <button class="tag-btn" data-zh="喝杯茶" data-en="A cup of tea" onclick="pickFuture(this)"><span class="zh">喝杯茶</span><span class="en">A cup of tea</span></button>
+                    <button class="tag-btn" data-zh="撫摸小動物" data-en="Stroke a pet" onclick="pickFuture(this)"><span class="zh">撫摸小動物</span><span class="en">Stroke a pet</span></button>
+                </div>
+                <div class="feedback-box" id="future-feedback">
+                    <span class="zh">選一兩個最容易開始的就足夠了，慢慢來。🤍</span>
+                    <span class="en">Picking one or two easy ones is enough—take it slow. 🤍</span>
+                </div>
+            </div>
+
+            <!-- Step 3-D -->
+            <div class="doodle-card">
+                <span class="zone-tag"><span class="zh">Step 3-D：心靈盒子 📮</span><span class="en">Step 3-D: Heart Box 📮</span></span>
+                <h2><span class="zh">安放與封存</span><span class="en">Settle &amp; Seal</span></h2>
+                <div class="text-content">
+                    <span class="zh">面對關係分離，有哪些東西是你此刻很想「放下」的？是一個人？一個疑問？還是等不到的抱歉，抑或是一句對自己的安慰？</span>
+                    <span class="en">Facing relationship loss, what would you like to lay down right now? A person? A question? An apology that never came—or a word of comfort to yourself?</span>
+                </div>
+
+                <div class="privacy-note">
+                    <span class="zh">🔒 <b>私隱聲明：</b>您所提供的資料，會以<b>匿名方式</b>記錄，並作保密處理，主要供本服務了解參加者需要及改善服務之用，並會於本年度計劃結束（<b>2027年3月31日</b>）後刪除。內容不會用作識別任何個人身份。<br>✋ 請<b>不要寫上姓名、電話或其他可識別個人身份的資料</b>。如您正面對難以承受的困擾，歡迎直接與在場工作人員傾談。🤍</span>
+                    <span class="en">🔒 <b>Privacy:</b> Your input is recorded <b>anonymously</b> and kept confidential, used only to understand participants' needs and improve this service. It will be deleted after this programme year ends (<b>31 March 2027</b>) and will not be used to identify anyone.<br>✋ Please <b>do not include your name, phone number or other identifying information</b>. If you are facing overwhelming distress, please talk to our staff on site. 🤍</span>
+                </div>
+
+                <textarea class="doodle-textarea" id="self-note" placeholder="把它寫下來，暫時安放在這裡吧。"></textarea>
+
+                <div class="note-alert" id="note-alert"></div>
+                
+                <div style="text-align: center;">
+                    <button class="action-btn" id="sealBtn" onclick="generateTape()">
+                        <span class="zh">封存並列印整理收據 🧾</span><span class="en">Seal it &amp; print my receipt 🧾</span>
+                    </button>
+                </div>
+
+                <div id="postcard-box" style="display:none; margin-top: 18px; padding: 18px; background: #fffbe6; border: 2.5px dashed #111; border-radius: 12px; text-align: center;">
+                    <h3 style="margin-top:0;"><span class="zh">已安放 🤍</span><span class="en">Settled 🤍</span></h3>
+                    <p id="postcard-content" style="font-size: 14.5px; font-weight: 700; color: #111; line-height: 1.6;"></p>
+                </div>
+
+                <div class="receipt-wrap" id="receiptWrap">
+                    <div class="receipt">
+                        <div class="r-center">
+                            <div class="r-title"><span class="zh">關係失去整理所</span><span class="en">RELATIONSHIP LOSS SORTING STATION</span></div>
+                            <div class="r-sub">Relationship Loss Sorting Station · RECEIPT</div>
+                            <div class="r-meta"><span id="rNo"></span>　<span id="rDate"></span></div>
+                        </div>
+                        <div class="r-line"></div>
+                        <div class="r-item"><span><span class="zh">✔ 正視身心反應</span><span class="en">✔ Acknowledged mind-body signals</span></span><span><span class="zh">已覺察</span><span class="en">Noticed</span></span></div>
+                        <div class="r-item"><span><span class="zh">✔ 標記哀傷位置</span><span class="en">✔ Marked grief position</span></span><span id="rStage"><span class="zh">已標記</span><span class="en">Marked</span></span></div>
+                        <div class="r-item"><span><span class="zh">✔ 覺察雙軌擺盪</span><span class="en">✔ Noticed the oscillation</span></span><span id="rSwing"><span class="zh">已覺察</span><span class="en">Noticed</span></span></div>
+                        <div class="r-item"><span><span class="zh">✔ 翻轉內在聲音 ×3</span><span class="en">✔ Inner voice re-sorted ×3</span></span><span><span class="zh">已拆箱</span><span class="en">Unboxed</span></span></div>
+                        <div class="r-item"><span><span class="zh">✔ 未來想試的練習</span><span class="en">✔ Practices to try</span></span><span id="rFuture"><span class="zh">保持開放</span><span class="en">Staying open</span></span></div>
+                        <div class="r-item"><span><span class="zh">✔ 心靈盒子</span><span class="en">✔ Heart box</span></span><span><span class="zh">已封存 ×1</span><span class="en">Sealed ×1</span></span></div>
+                        <div class="r-line"></div>
+                        <div style="font-size:10.5px; color:#999;"><span class="zh">給自己的一句話：</span><span class="en">A note to yourself:</span></div>
+                        <div class="r-quote" id="rQuote"></div>
+                        <div class="r-total"><span><span class="zh">應付金額</span><span class="en">Total due</span></span><span><span class="zh">$0（無價）</span><span class="en">$0 (Priceless)</span></span></div>
+                        <div class="r-center"><span class="fragile"><span class="zh">FRAGILE 易碎——請溫柔對待</span><span class="en">FRAGILE—handle with tenderness</span></span></div>
+                        <div class="r-line"></div>
+                        <div class="r-center" style="font-weight:900; font-size:12.5px;">
+                            <span class="zh">🎫 憑此收據到攤位領取心靈資源禮品包</span>
+                            <span class="en">🎫 Show this receipt at the booth for a self-care gift pack</span>
+                        </div>
+                        <div style="margin-top:6px;">
+                            <div class="r-gift"><span class="zh">🎁 鬆鬆壓力球 ×1</span><span class="en">🎁 Stress ball ×1</span></div>
+                            <div class="r-gift"><span class="zh">🎁 自我關懷提示卡（7張）及木架 ×1</span><span class="en">🎁 Self-compassion prompt cards (7) with wooden stand ×1</span></div>
+                        </div>
+                        <div class="r-line"></div>
+                        <div class="r-center" style="font-weight:700; font-size:12px;">
+                            <span class="zh">帶著傷痕，繼續溫柔生活。🩹</span>
+                            <span class="en">Carrying our scars, living gently on. 🩹</span>
+                        </div>
+                        <div class="barcode"></div>
+                        <div class="r-foot">
+                            <span class="zh">明愛心營站──關係傷痛支援計劃</span>
+                            <span class="en">Caritas Supportive Service for Adults with Relational Wounds</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="save-hint" id="saveHint">
+                    <span class="zh">📸 請<b>截圖保存這張收據</b>，出示給攤位工作人員即可領取禮品！</span>
+                    <span class="en">📸 Please <b>screenshot this receipt</b> and show it to our booth staff to collect your gift!</span>
+                </div>
+            </div>
+
+            <!-- 資源閣 -->
+            <div class="doodle-card" style="background-color: #fdfbf7;">
+                <span class="zone-tag" style="background: #9ad5f8;"><span class="zh">🎁 資源閣</span><span class="en">🎁 Resource Corner</span></span>
+                <h2><span class="zh">心靈資源與社區支援</span><span class="en">Self-care Resources &amp; Community Support</span></h2>
+                <div class="text-content">
+                    <span class="zh">完成整理體驗並封存心靈盒子後，憑「關係整理收據」於實體攤位領取心靈資源禮品包。<br><br>帶著傷痕，繼續溫柔生活。🩹</span>
+                    <span class="en">After completing the experience and sealing your heart box, show the receipt at our booth to collect a self-care gift pack.<br><br>Carrying our scars, living gently on. 🩹</span>
+                </div>
+
+                <div style="margin-top: 18px; text-align: center;">
+                    <a href="https://example.com/community-resources.pdf" target="_blank" style="text-decoration: none;">
+                        <button class="action-btn" style="background: #fffbe6; width: 100%; max-width: 320px; padding: 12px 16px; font-size: 13.5px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                            <span class="zh">查看社區支援資源 🔗</span>
+                            <span class="en">View community support resources 🔗</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 底部導覽列 -->
+    <div class="nav-bar">
+        <button class="nav-btn active" onclick="switchPage('page1')"><span class="zh">1. 覺察</span><span class="en">1. Notice</span></button>
+        <button class="nav-btn" onclick="switchPage('page2')"><span class="zh">2. 整理</span><span class="en">2. Sort</span></button>
+        <button class="nav-btn" onclick="switchPage('page3')"><span class="zh">3. 安放</span><span class="en">3. Settle</span></button>
+    </div>
+
+    <script>
+        /* =====================================================
+           ★★★ 雙語系統：bi() 同時輸出中英，CSS 負責顯示 ★★★
+           ===================================================== */
+        let LANG = 'zh';
+        function bi(zh, en) {
+            return `<span class="zh">${zh}</span><span class="en">${en}</span>`;
+        }
+        const PLACEHOLDERS = {
+            zh: '把它寫下來，暫時安放在這裡吧。',
+            en: 'Write it down and let it rest here for now.'
+        };
+        function toggleLang() {
+            LANG = (LANG === 'zh') ? 'en' : 'zh';
+            document.body.classList.toggle('lang-en', LANG === 'en');
+            document.getElementById('langBtn').textContent = (LANG === 'zh') ? 'EN' : '中';
+            document.getElementById('self-note').placeholder = PLACEHOLDERS[LANG];
+            document.documentElement.lang = (LANG === 'zh') ? 'zh-HK' : 'en';
+        }
+
+        // --- Navigation ---
+        function switchPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            const index = pageId === 'page1' ? 0 : (pageId === 'page2' ? 1 : 2);
+            document.querySelectorAll('.nav-btn').forEach((btn, i) => {
+                i === index ? btn.classList.add('active') : btn.classList.remove('active');
+            });
+            window.scrollTo(0,0);
+        }
+
+        /* =====================================================
+           ★★★ Page 1：同一片天空 ★★★
+           ===================================================== */
+        // ====== 症狀清單（雙語） ======
+        const GROUPS = {
+            body:{ icon:'⚡', items:[
+                {zh:'失眠', en:'Insomnia'}, {zh:'頭昏腦脹', en:'Dizzy & foggy'},
+                {zh:'心口翳悶', en:'Chest tightness'}, {zh:'腸胃不適', en:'Stomach discomfort'},
+                {zh:'食慾改變', en:'Appetite changes'}, {zh:'麻木無感', en:'Numbness'}
+            ]},
+            emo :{ icon:'💧', items:[
+                {zh:'難以置信', en:'Disbelief'}, {zh:'不捨', en:'Hard to let go'},
+                {zh:'無奈', en:'Helplessness'}, {zh:'傷心', en:'Sadness'},
+                {zh:'憤怒', en:'Anger'}, {zh:'愧疚', en:'Guilt'},
+                {zh:'羞恥', en:'Shame'}, {zh:'害怕', en:'Fear'}, {zh:'孤單', en:'Loneliness'}
+            ]},
+            beh :{ icon:'🌀', items:[
+                {zh:'難以專注', en:'Trouble focusing'}, {zh:'社交退縮', en:'Social withdrawal'},
+                {zh:'暴飲暴食', en:'Binge eating'}
+            ]}
+        };
+        const ITEM_MAP = {};   // key(zh) → {zh,en,icon}
+        Object.values(GROUPS).forEach(v => v.items.forEach(it => ITEM_MAP[it.zh] = {...it, icon: v.icon}));
+
+        // ====== 模擬統計（正式版接 Apps Script） ======
+        const mockCounts = {};
+        Object.keys(ITEM_MAP).forEach(k => { mockCounts[k] = 8 + Math.floor(Math.random()*28); });
+        let mockTotal = 60 + Math.floor(Math.random()*40);
+
+        // ====== 天氣元素 ======
+        const BOLT_SPOTS = [[240,-50],[400,-60],[320,-20],[150,-25],[490,-20]];
+        const RAIN_SPOTS = [[180,508],[268,522],[356,510],[444,524],[532,508]];
+        const WIND_SPOTS = [[-95,240,1],[600,230,-1],[-95,370,1],[600,370,-1],[-90,510,1]];
+
+        function bolt(x,y,i){
+            return `<g opacity="0.9">
+              <polygon points="${x},${y-22} ${x-13},${y+4} ${x-2},${y+4} ${x-11},${y+26} ${x+13},${y-4} ${x+2},${y-4}"
+                fill="#FFD35C"/>
+              <animate attributeName="opacity" values="0.9;0.3;0.9" dur="${1.4+i*0.3}s" repeatCount="indefinite"/>
+            </g>`;
+        }
+        function drop(x,y,i){
+            return `<g>
+              <path transform="translate(${x},${y})"
+                d="M0 -13 C8 -2 8 8 0 13 C-8 8 -8 -2 0 -13" fill="#7FC3EC"/>
+              <animateTransform attributeName="transform" type="translate"
+                from="0 0" to="0 32" dur="${1.5+i*0.25}s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.9;0" dur="${1.5+i*0.25}s" repeatCount="indefinite"/>
+            </g>`;
+        }
+        function wind(x,y,dir,i){
+            const s = dir;
+            return `<g opacity="0.85">
+              <g transform="translate(${x},${y}) scale(${s},1)">
+                <path d="M0 0 c 22 -10 50 -12 72 -3 c 16 7 30 4 38 -7 a 12 12 0 1 0 -17 -9"
+                  stroke="#C7D3DC" stroke-width="10" fill="none" stroke-linecap="round"/>
+                <path d="M4 26 c 20 8 46 9 66 2 c 14 -5 26 -3 34 6 a 10 10 0 1 1 -15 8"
+                  stroke="#C7D3DC" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.7"/>
+              </g>
+              <animateTransform attributeName="transform" type="translate"
+                values="0 0; ${10*s} 0; 0 0" dur="${2.4+i*0.4}s" repeatCount="indefinite"/>
+            </g>`;
+        }
+
+        const skyCounts = { body:0, emo:0, beh:0 };
+        function drawWeather(){
+            let front = '', back = '';
+            for (let i=0; i<Math.min(skyCounts.body, 5); i++) front += bolt(...BOLT_SPOTS[i].slice(0,2), i);
+            for (let i=0; i<Math.min(skyCounts.emo , 5); i++) front += drop(...RAIN_SPOTS[i], i);
+            for (let i=0; i<Math.min(skyCounts.beh , 5); i++) back  += wind(...WIND_SPOTS[i], i);
+            document.getElementById('weatherFront').innerHTML = front;
+            document.getElementById('weatherBack').innerHTML  = back;
+        }
+
+        // ====== 產生標籤（雙語 span，CSS 自動切換） ======
+        const selectedSyms = new Set();   // 儲存 zh key
+        document.querySelectorAll('.sky-chips').forEach(box => {
+            const g = box.dataset.g;
+            GROUPS[g].items.forEach(item => {
+                const c = document.createElement('button');
+                c.className = 'tag-btn';
+                c.innerHTML = bi(item.zh, item.en);
+                c.onclick = () => {
+                    c.classList.toggle('active');
+                    if (c.classList.contains('active')) { selectedSyms.add(item.zh); skyCounts[g]++; }
+                    else { selectedSyms.delete(item.zh); skyCounts[g]--; }
+                    document.getElementById('submitBtn').disabled = selectedSyms.size === 0;
+                    drawWeather();
+                    updateSymptomFeedback();
+                };
+                box.appendChild(c);
+            });
+        });
+
+        function updateSymptomFeedback(){
+            const n = selectedSyms.size;
+            const fb = document.getElementById('symptom-feedback');
+            if (n === 0) fb.innerHTML = bi(
+                "點擊上方標籤，看看你的身心正為你承載著什麼？🤍",
+                "Tap the tags above and see what your body and mind are carrying for you 🤍");
+            else if (n <= 3) fb.innerHTML = bi(
+                `你選了 ${n} 個訊號，雲上的天氣也起了變化。<br>看見這些不舒服，是自我修復的第一步。辛苦你了。`,
+                `You selected ${n} signal(s); the weather on the cloud has shifted.<br>Noticing this discomfort is the first step of self-repair. It's been hard on you.`);
+            else fb.innerHTML = bi(
+                `你選了 ${n} 個訊號，這朵雲正承受著風雨雷電。<br>你的身心正承受著巨大的壓力警報，請允許自己好好休息。`,
+                `You selected ${n} signals—this cloud is weathering storms.<br>Your body and mind are under a heavy stress alarm. Please allow yourself a good rest.`);
+        }
+
+        // ====== 貼頂偵測 ======
+        const cloudStage = document.getElementById('cloudStage');
+        const cloudSentinel = document.getElementById('cloudSentinel');
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(([entry]) => {
+                cloudStage.classList.toggle('stuck', !entry.isIntersecting);
+            }, { threshold: 0 }).observe(cloudSentinel);
+        }
+
+        // ====== 招牌膠布 ======
+        const PLASTER = `<g transform="rotate(-55 480 282)" opacity="0">
+              <rect x="458" y="222" width="44" height="120" rx="22" fill="#fff"/>
+              <circle cx="480" cy="282" r="15" fill="#E64A3B"/>
+              <animate attributeName="opacity" from="0" to="1" dur="0.8s" begin="0.3s" fill="freeze"/>
+            </g>`;
+
+        // ====== 提交 ======
+        function submitSky(){
+            selectedSyms.forEach(s => mockCounts[s]++);
+            mockTotal++;
+
+            const svg2 = document.getElementById('cloudSvg2');
+            svg2.innerHTML = document.getElementById('cloudSvg').innerHTML;
+            svg2.querySelector('#mouthFlat').style.display = 'none';
+            svg2.querySelector('#mouthSmile').style.display = '';
+            const wf = svg2.querySelector('#weatherFront');
+            const wb = svg2.querySelector('#weatherBack');
+            wf.removeAttribute('id'); wb.removeAttribute('id');
+            wf.style.transition = 'opacity 1.2s ease';
+            wb.style.transition = 'opacity 1.2s ease';
+            requestAnimationFrame(() => setTimeout(() => {
+                wf.style.opacity = '0.25'; wb.style.opacity = '0.25';
+            }, 400));
+            svg2.querySelector('#plaster').innerHTML = PLASTER;
+
+            // ★ 雙語 miniTags
+            document.getElementById('miniTags').innerHTML =
+                [...selectedSyms].map(k => {
+                    const it = ITEM_MAP[k];
+                    return `<span>${it.icon} ${bi(it.zh, it.en)} <b>×${mockCounts[k]}</b></span>`;
+                }).join('');
+
+            const sky = document.getElementById('sky');
+            sky.innerHTML = '';
+            const n = Math.min(mockTotal, 20);
+            for (let k = 0; k < n; k++) {
+                const el = document.createElement('div');
+                el.className = 'mini-cloud';
+                const w = 28 + Math.random()*32;
+                el.style.left = (Math.random()*88) + '%';
+                el.style.top  = (Math.random()*68) + '%';
+                el.style.animationDelay = (Math.random()*1.6) + 's';
+                el.innerHTML = `<svg width="${w}" viewBox="0 0 64 40">
+                    <g fill="#CFE9FB"><circle cx="18" cy="24" r="12"/><circle cx="32" cy="16" r="14"/>
+                    <circle cx="46" cy="24" r="12"/><circle cx="32" cy="28" r="13"/></g></svg>`;
+                sky.appendChild(el);
+            }
+            const me = document.createElement('div');
+            me.className = 'mini-cloud';
+            me.style.left = '45%'; me.style.top = '28%'; me.style.animationDelay = '2s';
+            me.innerHTML = `<svg width="54" viewBox="0 0 64 40">
+                <g fill="#8FCBEF"><circle cx="18" cy="24" r="12"/><circle cx="32" cy="16" r="14"/>
+                <circle cx="46" cy="24" r="12"/><circle cx="32" cy="28" r="13"/></g>
+                <circle cx="26" cy="21" r="1.8" fill="#fff"/><circle cx="35" cy="21" r="1.8" fill="#fff"/>
+                <path d="M27 27 Q30.5 30 34 27" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                <g transform="rotate(-50 46 22)"><rect x="43.5" y="15" width="5" height="14" rx="2.5" fill="#fff"/>
+                <circle cx="46" cy="22" r="1.7" fill="#E64A3B"/></g></svg>`;
+            sky.appendChild(me);
+
+            document.getElementById('totalN').textContent = mockTotal;
+            document.getElementById('skyPick').style.display = 'none';
+            document.getElementById('skyResult').style.display = 'block';
+            window.scrollTo({top:0, behavior:'smooth'});
+        }
+
+        /* =====================================================
+           ★★★ 2-A / 2-B / 3-C 反思選擇（供收據使用） ★★★
+           ===================================================== */
+        function pickStage(btn){
+            document.querySelectorAll('#stagePick .tag-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('stage-feedback').innerHTML = bi(
+                `📍 你標記了「<b>${btn.dataset.zh}</b>」。<br>無論標記在哪裡，都沒有「應該」的位置——來回，也是前行的一部分。🤍`,
+                `📍 You marked "<b>${btn.dataset.en}</b>".<br>Wherever you mark, there is no "should"—going back and forth is part of moving forward. 🤍`);
+        }
+        function pickSwing(btn){
+            document.querySelectorAll('#swingPick .tag-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('swing-feedback').innerHTML = bi(
+                `🧭 你此刻較接近「<b>${btn.dataset.zh}</b>」。<br>無論在哪一端，都是歷程的一部分，沒有對錯。🤍`,
+                `🧭 Right now you are closer to "<b>${btn.dataset.en}</b>".<br>Wherever you are, it's part of the process—no right or wrong. 🤍`);
+        }
+        function pickFuture(btn){
+            btn.classList.toggle('active');
+            const n = document.querySelectorAll('#futurePick .tag-btn.active').length;
+            const fb = document.getElementById('future-feedback');
+            fb.innerHTML = n === 0
+                ? bi("選一兩個最容易開始的就足夠了，慢慢來。🤍",
+                     "Picking one or two easy ones is enough—take it slow. 🤍")
+                : bi(`🌱 你選了 ${n} 個練習。由小事開始，把善意變成習慣。`,
+                     `🌱 You picked ${n} practice(s). Start small and let kindness become a habit.`);
+        }
+
+        // --- Page 2-A ---
+        const curvyPath = document.getElementById('curvyPath');
+        const trailPath = document.getElementById('trailPath');
+        const cloudGroupCurvy = document.getElementById('cloudGroupCurvy');
+        const triggerBubble = document.getElementById('trigger-bubble');
+        let curvyAnimFrame = null;
+
+        const trailTotalLength = trailPath.getTotalLength();
+        trailPath.style.strokeDasharray = trailTotalLength;
+        trailPath.style.strokeDashoffset = trailTotalLength;
+
+        const walkKeyframes = [
+            { t: 0,    p: 0    },
+            { t: 3.0,  p: 0.45 },
+            { t: 4.3,  p: 0.30 },
+            { t: 7.3,  p: 0.75 },
+            { t: 8.4,  p: 0.62 },
+            { t: 11.0, p: 1    }
+        ];
+        const walkDuration = walkKeyframes[walkKeyframes.length - 1].t;
+
+        const phaseMessages = [
+            { html: bi("🚶 出發了……每個人的復原歷程都是獨特的，沒有人能預先知道。",
+                       "🚶 Setting off… everyone's recovery journey is unique—no one can know it in advance."), style: "walk" },
+            { html: bi("🌀 <b>感覺好像退步了？</b> 有時會感覺前進三步又後退兩步，但整體是向前行。",
+                       "🌀 <b>Feels like a setback?</b> Sometimes it's three steps forward, two steps back—but overall you're moving on."), style: "trigger" },
+            { html: bi("🚶 再次前行。", "🚶 Moving forward again."), style: "walk" },
+            { html: bi("🌀 <b>不要緊，不用急。</b><br>來回搖擺，本來就是復原的一部分。",
+                       "🌀 <b>It's okay, no rush.</b><br>Swinging back and forth is part of recovery itself."), style: "trigger" },
+            { html: bi("🚶 帶著經歷，繼續向前……", "🚶 Carrying what you've been through, keep going…"), style: "walk" }
+        ];
+
+        function setBubbleStyle(styleName) {
+            if (styleName === "trigger") {
+                triggerBubble.style.background = "#fff3e6";
+                triggerBubble.style.borderColor = "#f4a261";
+                triggerBubble.style.boxShadow = "3px 3px 0px rgba(244,162,97,0.5)";
+            } else if (styleName === "end") {
+                triggerBubble.style.background = "#e8f4fd";
+                triggerBubble.style.borderColor = "#457b9d";
+                triggerBubble.style.boxShadow = "3px 3px 0px rgba(69,123,157,0.4)";
+            } else {
+                triggerBubble.style.background = "#fdfbf7";
+                triggerBubble.style.borderColor = "#ccc";
+                triggerBubble.style.boxShadow = "3px 3px 0px rgba(0,0,0,0.1)";
+            }
+        }
+
+        function updateCloudOnPath(progress) {
+            const pathLength = curvyPath.getTotalLength();
+            progress = Math.max(0, Math.min(1, progress));
+            const point = curvyPath.getPointAtLength(progress * pathLength);
+            cloudGroupCurvy.setAttribute('transform', `translate(${point.x}, ${point.y})`);
+            return point;
+        }
+        updateCloudOnPath(0);
+
+        function easeInOut(x) {
+            return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+        }
+
+        function getProgressAtTime(t) {
+            for (let i = 0; i < walkKeyframes.length - 1; i++) {
+                const a = walkKeyframes[i], b = walkKeyframes[i + 1];
+                if (t >= a.t && t <= b.t) {
+                    const local = (t - a.t) / (b.t - a.t);
+                    return { progress: a.p + (b.p - a.p) * easeInOut(local), segment: i };
+                }
+            }
+            return { progress: 1, segment: walkKeyframes.length - 2 };
+        }
+
+        function walkTangledPath() {
+            cancelAnimationFrame(curvyAnimFrame);
+            let startTime = null;
+            let maxProgress = 0;
+            let currentSegment = -1;
+
+            trailPath.style.strokeDashoffset = trailTotalLength;
+            const feedbackBox = document.getElementById('curvy-feedback');
+            if (feedbackBox) feedbackBox.style.display = 'none';
+            triggerBubble.style.display = 'block';
+
+            function animateWalk(timestamp) {
+                if (!startTime) startTime = timestamp;
+                let t = (timestamp - startTime) / 1000;
+                t = Math.min(t, walkDuration);
+
+                const { progress, segment } = getProgressAtTime(t);
+                updateCloudOnPath(progress);
+
+                if (progress > maxProgress) {
+                    maxProgress = progress;
+                    trailPath.style.strokeDashoffset = trailTotalLength * (1 - maxProgress);
+                }
+
+                if (segment !== currentSegment) {
+                    currentSegment = segment;
+                    const msg = phaseMessages[segment];
+                    if (msg) {
+                        triggerBubble.innerHTML = msg.html;
+                        setBubbleStyle(msg.style);
+                        triggerBubble.style.animation = 'none';
+                        void triggerBubble.offsetWidth;
+                        triggerBubble.style.animation = 'bubblePop 0.3s ease';
+                    }
+                }
+
+                if (t < walkDuration) {
+                    curvyAnimFrame = requestAnimationFrame(animateWalk);
+                } else {
+                    triggerBubble.innerHTML = bi(
+                        "🏁 回望你的復原路線——有起有伏、有後退、有繞圈。允許自己在修復路上有起有伏，溫柔包容自己的反覆。<br><b>👇 現在，沉澱一下，在下方標記今日的你。</b>",
+                        "🏁 Look back at your route—ups and downs, retreats and loops. Allow the fluctuation and be gentle with yourself.<br><b>👇 Now pause and mark where you are today below.</b>");
+                    setBubbleStyle("end");
+                    if (feedbackBox) feedbackBox.style.display = 'block';
+                }
+            }
+            curvyAnimFrame = requestAnimationFrame(animateWalk);
+        }
+
+        // --- Page 2-B: DPM ---
+        const pendulumGroup = document.getElementById('pendulumGroup');
+        const penFeedback = document.getElementById('pendulum-feedback');
+        let pendulumAnimId = null;
+
+        function startLifeSequence() {
+            if (pendulumAnimId) cancelAnimationFrame(pendulumAnimId);
+            let startTime = null;
+            
+            function animatePendulum(timestamp) {
+                if (!startTime) startTime = timestamp;
+                let t = (timestamp - startTime) / 1000;
+                let angle = 0;
+                
+                if (t < 2.0) {
+                    angle = 35 * Math.cos(t * 7) * Math.exp(-t * 0.4) + 5;
+                    penFeedback.innerHTML = bi(
+                        "🧭 <b>初期：</b>剛經歷分離，情緒在「失落端」劇烈擺盪",
+                        "🧭 <b>Early days:</b> right after the separation, emotions swing hard on the loss side");
+                    penFeedback.style.background = "#fcf3f3";
+                } 
+                else if (t < 4.0) {
+                    let localT = t - 2.0;
+                    let center = 5 - 25 * (1 - Math.exp(-localT * 2));
+                    angle = center + 20 * Math.cos(localT * 5) * Math.exp(-localT * 0.8);
+                    penFeedback.innerHTML = bi(
+                        "🌱 <b>適應期：</b>隨時間過去，擺盪減緩，重心移向「復原取向」。",
+                        "🌱 <b>Adapting:</b> over time the swing eases, shifting towards restoration.");
+                    penFeedback.style.background = "#f0f9f4";
+                }
+                else if (t < 5.5) {
+                    let localT = t - 4.0;
+                    angle = -20 + 50 * Math.sin((localT / 1.5) * Math.PI);
+                    penFeedback.innerHTML = bi(
+                        "🌧️ <b>觸發點：</b>遇上節日或舊地重遊，仍會再次擺回「失落取向」...",
+                        "🌧️ <b>Triggers:</b> festivals or familiar places may swing you back to loss…");
+                    penFeedback.style.background = "#fcf3f3";
+                }
+                else if (t < 8.5) {
+                    let localT = t - 5.5;
+                    angle = -20 + 15 * Math.sin(localT * 4) * Math.exp(-localT * 1.2);
+                    penFeedback.innerHTML = bi(
+                        "🤍 <b>長遠復原：</b>接納偶爾的擺盪，帶著傷痕繼續溫柔生活。<br><b>👇 之後試著在下方選一選：你較接近哪裡？</b>",
+                        "🤍 <b>Long-term:</b> accept the occasional swings and keep living gently with the scars.<br><b>👇 Then pick below: where are you closer to?</b>");
+                    penFeedback.style.background = "#fdfbf7";
+                }
+                else {
+                    pendulumGroup.style.transform = `rotate(-20deg)`;
+                    return;
+                }
+                
+                pendulumGroup.style.transform = `rotate(${angle}deg)`;
+                pendulumAnimId = requestAnimationFrame(animatePendulum);
+            }
+            pendulumAnimId = requestAnimationFrame(animatePendulum);
+        }
+
+        // --- Page 2-C: Brain Slider ---
+        const painNet = document.getElementById('pain-net');
+        const healNet = document.getElementById('heal-net');
+        const brainFeedback = document.getElementById('brain-feedback');
+
+        function updateBrainState(val) {
+            let ratio = val / 100;
+            painNet.style.opacity = Math.max(0, 1 - (ratio * 1.5)); 
+            healNet.style.opacity = ratio;
+
+            if (val < 30) {
+                brainFeedback.innerHTML = bi(
+                    "🚨 <b>警報期：</b>杏仁核過度活躍，大腦感受到如同肉體受傷般的實體痛楚。",
+                    "🚨 <b>Alarm:</b> the amygdala is hyperactive; the brain feels real, bodily pain.");
+                brainFeedback.style.background = "#ffebe6";
+                brainFeedback.style.borderColor = "#e63946";
+            } else if (val < 70) {
+                brainFeedback.innerHTML = bi(
+                    "🕰️ <b>過渡期：</b>當你嘗試照顧自己或接觸新事物，大腦正悄悄建立新的神經連結。",
+                    "🕰️ <b>Transition:</b> as you care for yourself or try new things, the brain quietly builds new connections.");
+                brainFeedback.style.background = "#fffbe6";
+                brainFeedback.style.borderColor = "#f4a261";
+            } else {
+                brainFeedback.innerHTML = bi(
+                    "🌱 <b>重塑期：</b>神經可塑性發揮作用！新的情緒調節迴路變強，舊的痛覺連接逐漸削弱。",
+                    "🌱 <b>Rewiring:</b> neuroplasticity at work! New emotion-regulation circuits strengthen while old pain links fade.");
+                brainFeedback.style.background = "#f0f9f4";
+                brainFeedback.style.borderColor = "#2a9d8f";
+            }
+        }
+
+        // --- Page 2-D: Drawing Canvas ---
+        const drawSvg = document.getElementById('draw-svg');
+        const userPath = document.getElementById('user-path');
+        const drawFeedback = document.getElementById('draw-feedback');
+        let isDrawing = false;
+        let drawPoints = [];
+
+        function getMousePos(evt) {
+            let CTM = drawSvg.getScreenCTM();
+            let x = evt.touches ? evt.touches[0].clientX : evt.clientX;
+            let y = evt.touches ? evt.touches[0].clientY : evt.clientY;
+            return { x: (x - CTM.e) / CTM.a, y: (y - CTM.f) / CTM.d };
+        }
+
+        function startDraw(e) {
+            isDrawing = true;
+            drawPoints = [];
+            drawPoints.push(getMousePos(e));
+            updateDrawPath();
+            drawFeedback.innerHTML = bi("正在繪製新的修復路徑... ✍️", "Drawing a new healing path… ✍️");
+            drawFeedback.style.background = "#e8f4fd";
+        }
+
+        function draw(e) {
+            if(!isDrawing) return;
+            e.preventDefault(); 
+            drawPoints.push(getMousePos(e));
+            updateDrawPath();
+        }
+
+        function endDraw() {
+            if(!isDrawing) return;
+            isDrawing = false;
+            if(drawPoints.length > 15) {
+                drawFeedback.innerHTML = bi(
+                    "✨「每一次你照顧自己，都是在為大腦鋪設這條新的神經迴路。大腦會記住這份溫柔。」",
+                    "✨ \"Every time you care for yourself, you are paving this new neural pathway. The brain remembers this tenderness.\"");
+                drawFeedback.style.background = "#f0f9f4";
+            } else {
+                drawFeedback.innerHTML = bi(
+                    "畫得太短了，試著畫一條長一點的連線吧！",
+                    "A bit too short—try drawing a longer line!");
+            }
+        }
+
+        function updateDrawPath() {
+            if(drawPoints.length < 2) return;
+            let d = `M ${drawPoints[0].x} ${drawPoints[0].y}`;
+            for(let i=1; i<drawPoints.length; i++) {
+                d += ` L ${drawPoints[i].x} ${drawPoints[i].y}`;
+            }
+            userPath.setAttribute('d', d);
+        }
+
+        drawSvg.addEventListener('mousedown', startDraw);
+        drawSvg.addEventListener('mousemove', draw);
+        window.addEventListener('mouseup', endDraw);
+        drawSvg.addEventListener('touchstart', startDraw, {passive: false});
+        drawSvg.addEventListener('touchmove', draw, {passive: false});
+        window.addEventListener('touchend', endDraw);
+
+        // --- Page 3-A: 拆箱 ---
+        let allBoxesEverOpened = false;
+
+        function toggleBox(el) {
+            el.classList.toggle('opened');
+            updateUnboxFeedback();
+        }
+
+        function updateUnboxFeedback() {
+            const openedNow = document.querySelectorAll('.unbox.opened').length;
+            const fb = document.getElementById('unbox-feedback');
+
+            if (openedNow >= 3) allBoxesEverOpened = true;
+
+            if (openedNow === 0) {
+                fb.innerHTML = allBoxesEverOpened
+                    ? bi("📦 全部重新封箱了。隨時可以再次拆開，重溫自我關懷的三大元素。",
+                         "📦 All re-sealed. Unbox anytime to revisit the three elements of self-compassion.")
+                    : bi("自我關懷包含三大核心元素，逐一拆箱看看吧 📦",
+                         "Self-compassion has three core elements—unbox them one by one 📦");
+                fb.style.background = "#fdfbf7";
+                fb.style.borderColor = "#111";
+            } else if (openedNow === 1) {
+                fb.innerHTML = bi("拆開了 1 個箱子 📦 還有 2 個……", "1 box opened 📦 2 to go…");
+                fb.style.background = "#fdfbf7";
+                fb.style.borderColor = "#111";
+            } else if (openedNow === 2) {
+                fb.innerHTML = bi("拆開了 2 個箱子 📦 只剩最後 1 個……", "2 boxes opened 📦 just 1 left…");
+                fb.style.background = "#fdfbf7";
+                fb.style.borderColor = "#111";
+            } else {
+                fb.innerHTML = bi(
+                    "🤍 三個箱子都整理好了。<br><b>善待自己・共通人性・靜觀</b>——這就是自我關懷的三大核心元素。<br>下次內在批判的聲音出現時，試著把它溫柔地重新整理一次。",
+                    "🤍 All three boxes sorted.<br><b>Self-Kindness · Common Humanity · Mindfulness</b>—the three core elements of self-compassion.<br>Next time the inner critic speaks, try gently re-sorting it.");
+                fb.style.background = "#f0f9f4";
+                fb.style.borderColor = "#2a9d8f";
+            }
+        }
+
+        // --- Page 3-B: 猜一猜 ---
+        function revealCard(el) {
+            if (el.classList.contains('revealed')) return;
+            el.classList.add('revealed');
+            el.innerHTML = `<span>${bi(el.dataset.zh, el.dataset.en)}</span>`;
+        }
+        function toggleMoreList() {
+            document.getElementById('more-list').classList.toggle('show');
+        }
+
+        // ★★★ 頁內溫柔提示 ★★★
+        function showNoteAlert(msgHtml) {
+            const el = document.getElementById('note-alert');
+            el.innerHTML = msgHtml;
+            el.classList.remove('show');
+            void el.offsetWidth;
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 4000);
+        }
+
+        // --- Page 3-D: 封存 + 收據 ---
+        function generateTape() {
+            const note = document.getElementById('self-note').value;
+            if (note.trim() === "") {
+                showNoteAlert(bi("✍️ 請先寫下你想安放的話 🤍", "✍️ Please write something to settle first 🤍"));
+                return;
+            }
+
+            const btn = document.getElementById('sealBtn');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = bi("正在封存中... 📦", "Sealing… 📦");
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzR2MXpmBoisKX5R3Y5zRDj32yaKqPd7EmL4-N70rDekjvlx0a-gwmdmOoKTED-k74/exec';
+
+            let formData = new FormData();
+            formData.append('message', note);
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    document.getElementById('postcard-content').innerText = `「${note}」`;
+                    document.getElementById('postcard-box').style.display = 'block';
+
+                    printReceipt(note);
+
+                    document.getElementById('self-note').value = "";
+                    btn.innerHTML = originalHTML;
+                    btn.style.opacity = "1";
+                    btn.disabled = false;
+                })
+                .catch(error => {
+                    showNoteAlert(bi("📡 封存失敗，請檢查網路連線後再試一次 🤍",
+                                     "📡 Sealing failed—please check your connection and try again 🤍"));
+                    btn.innerHTML = originalHTML;
+                    btn.style.opacity = "1";
+                    btn.disabled = false;
+                });
+        }
+
+        function printReceipt(note) {
+            document.getElementById('rQuote').innerText = `「${note}」`;
+            const d = new Date();
+            const pad = n => n < 10 ? '0' + n : n;
+            document.getElementById('rDate').innerText =
+                `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+            document.getElementById('rNo').innerText = "No. HC" + Math.floor(1000 + Math.random() * 9000);
+
+            // ★ 反思選擇（雙語，直接讀取已選按鈕的 data-zh / data-en）
+            const stageBtn = document.querySelector('#stagePick .tag-btn.active');
+            document.getElementById('rStage').innerHTML = stageBtn
+                ? bi(stageBtn.dataset.zh, stageBtn.dataset.en)
+                : bi("已標記", "Marked");
+
+            const swingBtn = document.querySelector('#swingPick .tag-btn.active');
+            document.getElementById('rSwing').innerHTML = swingBtn
+                ? bi(swingBtn.dataset.zh, swingBtn.dataset.en)
+                : bi("已覺察", "Noticed");
+
+            const futureBtns = [...document.querySelectorAll('#futurePick .tag-btn.active')];
+            document.getElementById('rFuture').innerHTML = futureBtns.length
+                ? bi(
+                    futureBtns.slice(0,3).map(b => b.dataset.zh).join('、') + (futureBtns.length > 3 ? '…' : ''),
+                    futureBtns.slice(0,3).map(b => b.dataset.en).join(', ') + (futureBtns.length > 3 ? '…' : ''))
+                : bi("保持開放 🤍", "Staying open 🤍");
+
+            document.getElementById('receiptWrap').classList.add('show');
+            document.getElementById('saveHint').classList.add('show');
+            document.getElementById('receiptWrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>
